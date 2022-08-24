@@ -13,6 +13,9 @@ class Profile extends Model
         'user_id',
         'image',
         'bio',
+        'city',
+        'document',
+        'validation',
         'birth_date',
         'quit_date',
     ];
