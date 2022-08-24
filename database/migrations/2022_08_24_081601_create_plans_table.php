@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('leader_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('helpseeker_id')->constrained('users')->onDelete('cascade');
+            $table->string('title');
+            $table->string('body');
+            $table->string('progress')->default('pending');
             $table->timestamps();
         });
     }
