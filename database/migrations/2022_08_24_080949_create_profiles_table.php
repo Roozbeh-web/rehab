@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('image');
             $table->string('bio');
             $table->date('birth_date');
+            $table->string('city');
+            $table->string('documents')->nullable();
+            $table->string('validation')->nullable();
             $table->date('quit_date')->nullable();
             $table->timestamps();
         });
