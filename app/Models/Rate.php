@@ -12,5 +12,6 @@ class Rate extends Model
     protected $fillable = [
         'user_id',
         'leader_id',
+        'amount',
     ];
 }
