@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('leader_id')->constrained('users');
+            $table->foreignId('helpseeker_id')->constrained('users');
             $table->integer('amount');
             $table->timestamps();
         });
