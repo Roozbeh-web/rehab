@@ -1,6 +1,13 @@
-$font-stack: Helvetica, sans-serif;
-$primary-color: #333;
+@import 'variables';
+
+@font-face {
+  font-family: 'NotoNastaliqUrdu';
+  src: url('../fonts/NotoNastaliqUrdu-Regular.ttf') format('truetype');
+}
 
 body {
+  font-family: $font-stack;
+  direction: $dir;
   background-color: black;
+  color: wheat;
 }
