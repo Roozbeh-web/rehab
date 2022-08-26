@@ -1,3 +1,13 @@
 @section('footer')
-    <h1>footer</h1>
+    <div class="footer">
+        <div class="footer-txt">
+            <h1>هم‌ترک</h1>
+        </div>
+        <div class="footer-link">
+            <a href="#" class="footer-link-item">ورود</a>
+            <a href="#" class="footer-link-item">ثبت‌نام</a>
+            <a href="#" class="footer-link-item">درباره ما</a>
+            <a href="#" class="footer-link-item">تماس با ما</a>
+        </div>
+    </div>
 @endsection
