@@ -37,10 +37,6 @@ a{
   font-style: oblique;
 }
 
-.first-container{
-  background-color: $secondary-color;
-}
-
 .footer{
   background-color: $dark-color;
   color: $primary-color;
@@ -68,6 +64,7 @@ a{
   display: flex;
   justify-content: space-between;
   padding: 60px 160px;
+  background-color: $secondary-color;
 }
 
 .first-pic-container img{
@@ -97,5 +94,34 @@ a{
 
 .first-btn:hover{
   box-shadow: 2px 2px 5px 2px $dark-color;
+}
+
+.form-container{
+  background-color: $secondary-color;
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 160px;
+}
+
+.signin-form{
+  margin-left: 180px;
+  h1 {
+    font-size: 48px;
+    margin: 0;
+    padding: 0;
+  }
+  label{
+    font-size: $parag-size;
+    margin: 0;
+  }
+  input{
+    height: 28px;
+    width: 320px;
+    direction: ltr;
+  }
+}
+
+.signin-img{
+  width: 360px;
 }
 
