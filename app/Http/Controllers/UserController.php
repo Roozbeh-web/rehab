@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -46,8 +47,23 @@ class UserController extends Controller
             'password.confirmed' => 'رمز عبور و تکرار آن مطابقت ندارد.'
         ]);
         if($validator->fails()){
-            // dd($validator->messages()->get('firstname'));
             return Redirect::back()->withErrors($validator)->withInput();
+        }
+        else{
+            $user = User::create([
+                'first_name' => $request->firstname,
+                'last_name' => $request->lastname,
+                'username' => $request->username,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'type' => $request->type,
+                'identity_code' => $request->identity_code,
+                'password' => bcrypt($request->password),
+            ]);
+
+            $token = $user->createToken('mytoken')->plainTextToken;
+
+            return redirect('/profile');
         }
     }
 }
