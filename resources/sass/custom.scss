@@ -117,6 +117,8 @@ a{
   input{
     height: 28px;
     width: 320px;
+  }
+  input:last-child{
     direction: ltr;
   }
 }
