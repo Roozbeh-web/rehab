@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function getSignIn(){
         return view('signin');
     }
 
-    public function signIn(){
-
+    public function postSignIn(){
+        return view('signin');
     }
 }
