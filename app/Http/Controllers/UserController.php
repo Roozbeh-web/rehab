@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -63,7 +64,10 @@ class UserController extends Controller
 
             $token = $user->createToken('mytoken')->plainTextToken;
 
-            return redirect('/profile');
+            Auth::login($user);
+            // Auth::logout($user);
+
+            return redirect('/profile', 201);
         }
     }
 }

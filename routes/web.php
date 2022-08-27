@@ -17,8 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/sign-in', [UserController::class, 'getSignIn'])->name('signin');
+Route::get('/sign-in', [UserController::class, 'getSignIn'])->name('login');
 Route::post('/sign-in', [UserController::class, 'postSignIn']);
 
 Route::get('/sign-up', [UserController::class, 'getSignUp'])->name('signup');
 Route::post('/sign-up', [UserController::class, 'postSignUp']);
+
+Route::group(['middleware'=>['auth']], function(){
+    Route::get('/profile', function(){
+        return "profile";
+    });
+});
