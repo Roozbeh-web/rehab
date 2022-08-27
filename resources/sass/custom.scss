@@ -82,6 +82,7 @@ a{
 .first-subtxt{
   width:440px;
   font-size: $parag-size;
+  margin: 34px 0;
 }
 
 .first-btn, .signin-btn, .signup-btn{
@@ -152,12 +153,12 @@ a{
 }
 
 .signup-btn{
-  margin-top: 290px;
-  margin-right: 40px;
+  margin-top: 20px;
+  margin-right: 10px;
 }
 
 .signup-img{
-  width: 360px;
+  width: 320px;
 }
 
 .signup{
@@ -166,4 +167,13 @@ a{
 
 .left-to-right-input{
   direction: ltr;
+}
+
+.error-txt{
+  color: red;
+  font-size: 12px;
+}
+
+p{
+  margin: 0;
 }
