@@ -84,7 +84,7 @@ a{
   font-size: $parag-size;
 }
 
-.first-btn, .signin-btn{
+.first-btn, .signin-btn, .signup-btn{
   font-family: $font-stack;
   background-color: $dark-color;
   padding: 0px 50px 10px 50px;
@@ -94,7 +94,7 @@ a{
   border: none;
 }
 
-.first-btn:hover, .signin-btn:hover{
+.first-btn:hover, .signin-btn:hover, .signup-btn:hover{
   background-color: $primary-color;
   color: $dark-color;
   cursor: pointer;
@@ -136,3 +136,34 @@ a{
   margin-top: 20px;
 }
 
+.signup-form{
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup-header-txt{
+  background-color: $secondary-color;
+  margin: 0 ;
+  padding:0 190px;
+}
+
+.signup-form-inner-container{
+  margin-left: 40px;
+}
+
+.signup-btn{
+  margin-top: 290px;
+  margin-right: 40px;
+}
+
+.signup-img{
+  width: 360px;
+}
+
+.signup{
+  padding-top: 0 !important;
+}
+
+.left-to-right-input{
+  direction: ltr;
+}
