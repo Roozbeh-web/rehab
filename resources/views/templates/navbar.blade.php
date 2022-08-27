@@ -5,7 +5,7 @@
         </div>
         <div class="nav-link">
             <a href={{ route('signin') }} class="nav-link-item">ورود</a>
-            <a href="#" class="nav-link-item">ثبت‌نام</a>
+            <a href={{ route('signup') }} class="nav-link-item">ثبت‌نام</a>
             <a href="#" class="nav-link-item">درباره ما</a>
             <a href="#" class="nav-link-item">تماس با ما</a>
         </div>
