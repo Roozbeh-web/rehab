@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,9 +14,33 @@ class UserController extends Controller
     public function getSignIn(){
         return view('signin');
     }
-
     public function postSignIn(Request $request){
-        dd($request);
+        $user = "";
+        $validator = Validator::make($request->all(),
+        [
+            'username'=> 'required|string',
+            'password'=> 'required|string',
+            ]
+            ,[
+                'username.required' => 'وارد کردن نام کاربری الزامی است.',
+                'password.required' => 'وارد کردن رمز عبور الزامی است',
+            ]);
+            
+            if($validator->fails()){
+                return Redirect::back()->withErrors($validator)->withInput();
+            }else{
+                $user = User::where("username", $request->username)->first();
+                
+                
+            if(!$user || !Hash::check($request->password, $user->password) ){
+                $error = 'مشخصات کاربری اشتباه است.';
+               return Redirect::back()->with('error', $error)->withInput();
+            }
+            else{
+                Auth::login($user);
+                return redirect('/profile');
+            }
+        }
     }
 
     public function getSignUp(){
