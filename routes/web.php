@@ -24,7 +24,6 @@ Route::get('/sign-up', [UserController::class, 'getSignUp'])->name('signup');
 Route::post('/sign-up', [UserController::class, 'postSignUp']);
 
 Route::group(['middleware'=>['auth']], function(){
-    Route::get('/profile', function(){
-        return "profile";
-    });
+    Route::get('/profile', [UserController::class, 'getProfile']);
+    Route::post('/profile', [UserController::class, 'postProfile']);
 });

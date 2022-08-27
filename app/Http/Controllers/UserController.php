@@ -95,4 +95,25 @@ class UserController extends Controller
             return redirect('/profile', 201);
         }
     }
+
+    public function getProfile(){
+        return view('profile');
+    }
+
+    public function postProfile(Request $request){
+        $validator = Validator::make($request->all(),[
+            'bio' => 'string',
+            'birthdate' => 'required|date',
+            'province' => 'required',
+            'city' => 'required',
+
+        ]);
+
+        if($validator->fails()){
+            return "hello";
+        }
+        else{
+            return "hello";
+        }
+    }
 }
