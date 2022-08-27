@@ -13,4 +13,12 @@ class UserController extends Controller
     public function postSignIn(Request $request){
         dd($request);
     }
+
+    public function getSignUp(){
+
+    }
+
+    public function postSignUp(Request $request){
+
+    }
 }
