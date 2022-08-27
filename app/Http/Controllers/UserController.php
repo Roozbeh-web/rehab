@@ -10,7 +10,7 @@ class UserController extends Controller
         return view('signin');
     }
 
-    public function postSignIn(){
-        return view('signin');
+    public function postSignIn(Request $request){
+        dd($request);
     }
 }

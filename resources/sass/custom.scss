@@ -84,23 +84,27 @@ a{
   font-size: $parag-size;
 }
 
-.first-btn{
+.first-btn, .signin-btn{
+  font-family: $font-stack;
   background-color: $dark-color;
   padding: 0px 50px 10px 50px;
   color: $primary-color;
   font-size: $parag-size;
   border-radius: 12px;
+  border: none;
 }
 
-.first-btn:hover{
-  box-shadow: 2px 2px 5px 2px $dark-color;
+.first-btn:hover, .signin-btn:hover{
+  background-color: $primary-color;
+  color: $dark-color;
+  cursor: pointer;
 }
 
 .form-container{
   background-color: $secondary-color;
   display: flex;
   justify-content: space-between;
-  padding: 60px 160px;
+  padding: 40px 160px;
 }
 
 .signin-form{
@@ -125,5 +129,10 @@ a{
 
 .signin-img{
   width: 360px;
+  margin-top: 40px;
+}
+
+.signin-btn{
+  margin-top: 20px;
 }
 
