@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,19 +102,47 @@ class UserController extends Controller
     }
 
     public function postProfile(Request $request){
+        $validationDate = date('Y-m-d',strtotime('18 years ago'));
+
         $validator = Validator::make($request->all(),[
             'bio' => 'string',
-            'birthdate' => 'required|date',
+            'birthdate' => 'required|date|before:'.$validationDate,
             'province' => 'required',
             'city' => 'required',
+            'avatar' => 'image'
 
+        ],
+        [
+            'birthdate.required' => 'وارد کردن تاریخ تولد الزامی است.',
+            'birthdate.before' => 'حداقل سن باید ۱۸ سال باشد.',
+            'province.required' => 'لطفا استان خود را انتخاب کنید.',
+            'city.required' => 'لطفا شهر خود را انتخاب کنید.',
+            'avatar.image' => 'فرمت فایل انتخابی اشتباه است.',
+            'avatar.size' => 'حجم عکس انتخابی باید کمتر از ۵ مگابایت باشد.'
         ]);
 
         if($validator->fails()){
-            return "hello";
+            return Redirect::back()->withErrors($validator)->withInput();
         }
-        else{
-            return "hello";
+        
+        if(auth()->user()->type === 'helpseeker'){
+            $profile = new Profile();
+
+            if($request->file('avatar')){
+                $image = $request->file('avatar');
+                $imageName = auth()->user()->username.$image->getClientOriginalName();
+                $image->move(public_path('public/Image'), $imageName);
+                $profile['image'] = $imageName;
+            }
+
+            $profile['user_id'] = auth()->id();
+            $profile['bio'] = $request->bio;
+            $profile['birth_date'] = $request->birthdate;
+            $profile['city'] = $request->city;
+            
+            $profile->save();
+
+            return redirect('/dashboard');
         }
     }
 }
