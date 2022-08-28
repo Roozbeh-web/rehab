@@ -6,7 +6,7 @@
         <form action="/profile" method="post" class="profile-form">
             @csrf
             <div>
-                <label>توضیحات</label><br>
+                <label>درباره من</label><br>
                 <textarea name="bio" cols="30" rows="10"></textarea><br>
                 <label>تاریخ تولد</label><br>
                 <input type="date" name="birthdate"><br>
