@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,9 @@ Route::get('/sign-up', [UserController::class, 'getSignUp'])->name('signup');
 Route::post('/sign-up', [UserController::class, 'postSignUp']);
 
 Route::group(['middleware'=>['auth']], function(){
-    Route::get('/profile', [UserController::class, 'getProfile']);
-    Route::post('/profile', [UserController::class, 'postProfile']);
+    Route::get('/new-user-profile', [ProfileController::class, 'getNewUserProfile'])->name('new-profile');
+    Route::post('/new-user-profile', [ProfileController::class, 'postNewUserProfile']);
+    Route::get('/dashboard', function(){
+        return "dashboard";
+    });
 });
