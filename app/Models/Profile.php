@@ -14,7 +14,6 @@ class Profile extends Model
         'image',
         'bio',
         'city',
-        'document',
         'validation',
         'birth_date',
         'quit_date',
