@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Redirect;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -47,4 +48,14 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof \Illuminate\Http\Exceptions\PostTooLargeException) {
+            $error = 'اندازه هر فایل باید کمتر از ۱۲ مگابایت باشد.';
+            // dd($error);
+            return Redirect::back()->with('error', $error)->withInput();
+    }
+    //  return parent::render($request, $exception);
+ }
 }

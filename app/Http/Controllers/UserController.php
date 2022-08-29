@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use App\Models\Profile;
 use App\Models\User;
+use Exception;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\File as RulesFile;
+use Throwable;
 
 class UserController extends Controller
 {
     public function getSignIn(){
         return view('signin');
     }
+
     public function postSignIn(Request $request){
         $user = "";
         $validator = Validator::make($request->all(),
@@ -35,7 +42,7 @@ class UserController extends Controller
                 
             if(!$user || !Hash::check($request->password, $user->password) ){
                 $error = 'مشخصات کاربری اشتباه است.';
-               return Redirect::back()->with('error', $error)->withInput();
+                return Redirect::back()->with('error', $error)->withInput();
             }
             else{
                 Auth::login($user);
@@ -107,7 +114,6 @@ class UserController extends Controller
         $validationDate = date('Y-m-d',strtotime('18 years ago'));
 
         $validator = Validator::make($request->all(),[
-            'bio' => 'string',
             'birthdate' => 'required|date|before:'.$validationDate,
             'province' => 'required',
             'city' => 'required',
@@ -127,21 +133,80 @@ class UserController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
         
-        if(auth()->user()->type === 'helpseeker'){
-            $profile = new Profile();
+        $profile = new Profile();
 
-            if($request->file('avatar')){
-                $image = $request->file('avatar');
-                $imageName = auth()->user()->username.$image->getClientOriginalName();
-                $image->move(public_path('public/Image'), $imageName);
-                $profile['image'] = $imageName;
+        if($request->file('avatar')){
+            $image = $request->file('avatar');
+            $imageName = auth()->user()->username.$image->getClientOriginalName();
+            $image->move(public_path('public/Image'), $imageName);
+            $profile['image'] = $imageName;
+        }
+
+        $profile['user_id'] = auth()->id();
+        $profile['bio'] = $request->bio;
+        $profile['birth_date'] = $request->birthdate;
+        $profile['province'] = $request->province;
+        $profile['city'] = $request->city;
+
+        if(auth()->user()->type === 'helpseeker'){
+            $profile->save();
+            return redirect('/dashboard');
+        }
+
+        else if(auth()->user()->type === 'leader'){
+            $validator->addRules([
+                'documents' => 'required',
+                'quit_date' => 'required|date',
+            ]);
+
+            $validator->setCustomMessages([
+                'documents.required' => 'مدارک خود را بارگذاری کنید.',
+                'quit_date.required' => 'ورود تاریخ ترک الزامی است.',
+            ]);
+
+            if($validator->fails()){
+                return Redirect::back()->withErrors($validator)->withInput();
             }
 
-            $profile['user_id'] = auth()->id();
-            $profile['bio'] = $request->bio;
-            $profile['birth_date'] = $request->birthdate;
-            $profile['city'] = $request->city;
-            
+            $allowedfileExtension=['pdf','jpg','png','docx'];
+
+            $documents = $request->file('documents');
+
+            $maxSize = 12 * 1024;
+
+            $username = auth()->user()->username;
+
+            foreach($documents as $document){
+                $size = $document->getSize() / 1000;
+                $documentName = $username . '_' . $document->getClientOriginalName();
+                $extension = $document->getClientOriginalExtension();
+
+                $check = in_array($extension, $allowedfileExtension);
+                $isFit = $size < $maxSize ? true : false;
+
+                if($check && $isFit){
+                    $document->move(public_path('public/documents/'. $username . "/"), $documentName);
+
+                    Document::create([
+                        'user_id' => auth()->id(),
+                        'document' => $documentName,
+                    ]);
+                }
+                
+                else{
+                    $error = "";
+                    
+                    if(!$check){
+                        $error = 'فرمت فایل اشتباه است.';
+                    }else if(!$isFit){
+                        $error = 'اندازه هر فایل باید کمتر از ۱۲ مگابایت باشد.';
+                    }
+                    
+                    return Redirect::back()->with('error', $error)->withInput();
+                }
+            }
+
+            $profile['quit_date'] = $request->quit_date;
             $profile->save();
 
             return redirect('/dashboard');

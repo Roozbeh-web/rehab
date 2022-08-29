@@ -7,12 +7,12 @@
             @csrf
             <div>
                 <label>درباره من</label><br>
-                <textarea name="bio" cols="30" rows="10"></textarea><br>
+                <textarea name="bio" cols="30" rows="10" >{{old('bio')}}</textarea><br>
                 <label>تاریخ تولد</label><br>
                 @error('birthdate')
                     <span class="error-txt">{{ $message }}</span><br>
                 @enderror
-                <input type="date" name="birthdate"><br>
+                <input type="date" name="birthdate" value="{{old('birthdate')}}"><br>
             </div>
             <div class="ir-select">
                 <label>محل زندگی</label><br>
@@ -27,10 +27,21 @@
                 @enderror
                 <input type="file" name="avatar"><br>
                 @if(auth()->user()->type == "leader")
-                <label>مدارک شناسایی (به صورت عکس)</label><br>
-                <input type="file" name="documents" multiple><br>
-                <label>تاریخ ترک</label><br>
-                <input type="date" name="quit_date"><br>
+                    <label>مدارک شناسایی (به صورت عکس)</label><br>
+                    @error('documents')
+                        <span class="error-txt">{{ $message }}</span><br>
+                    @enderror
+                    @if (session()->get('error'))
+                        <span class="error-txt">
+                            {{ session()->get('error') }}
+                        </span><br>
+                    @endif
+                    <input type="file" name="documents[]" multiple><br>
+                    <label>تاریخ ترک</label><br>
+                    @error('quit_date')
+                        <span class="error-txt">{{ $message }}</span><br>
+                    @enderror
+                    <input type="date" name="quit_date" value="{{old('quit_date')}}"><br>
                 @endif
                 <button class="profile-btn btn" type="submit">ثبت</button>
             </div>
