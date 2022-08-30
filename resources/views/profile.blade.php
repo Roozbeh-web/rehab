@@ -3,7 +3,7 @@
 @section('content')
     <div class="profile-container">
         <h1>تکمیل مشخصات کاربری</h1>
-        <form action="/profile" method="post" class="profile-form" enctype="multipart/form-data">
+        <form action="/new-user-profile" method="post" class="profile-form" enctype="multipart/form-data">
             @csrf
             <div>
                 <label>درباره من</label><br>

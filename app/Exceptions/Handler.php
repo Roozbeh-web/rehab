@@ -55,6 +55,6 @@ class Handler extends ExceptionHandler
             $error = 'اندازه هر فایل باید کمتر از ۱۲ مگابایت باشد.';
             return Redirect::back()->with('error', $error)->withInput();
     }
-     return parent::render($request, $exception);
+    return parent::render($request, $exception);
  }
 }
