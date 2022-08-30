@@ -29,7 +29,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::post('/new-user-profile', [ProfileController::class, 'postNewUserProfile']);
     Route::get('/dashboard', function(){
         return view('dashboard');
-    });
+    })->name('dashboard');
 
     Route::get('/edit-profile', [ProfileController::class, 'getEditProfile'])->name('edit-profile');
     Route::post('/edit-profile', [ProfileController::class, 'postEditProfile']);

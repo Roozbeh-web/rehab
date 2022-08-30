@@ -16,7 +16,7 @@
         </a>
     </div>
     <div class="nav-link">
-        <a href="#" class="nav-link-item">خانه</a>
+        <a href={{ route('dashboard') }} class="nav-link-item">خانه</a>
         <a href="#" class="nav-link-item">پست ها</a>
         @if (auth()->user()->type === 'helpseeker')
             <a href="#" class="nav-link-item">راهنما</a>
