@@ -28,6 +28,6 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('/new-user-profile', [ProfileController::class, 'getNewUserProfile'])->name('new-profile');
     Route::post('/new-user-profile', [ProfileController::class, 'postNewUserProfile']);
     Route::get('/dashboard', function(){
-        return "dashboard";
+        return view('dashboard');
     });
 });
