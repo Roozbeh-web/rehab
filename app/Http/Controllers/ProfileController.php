@@ -119,4 +119,12 @@ class ProfileController extends Controller
             return redirect('/dashboard');
         }
     }
+
+    public function getEditProfile(){
+        return view('editProfile');
+    }
+
+    public function postEditProfile(Request $request){
+        //
+    }
 }

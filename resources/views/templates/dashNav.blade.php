@@ -1,7 +1,7 @@
 @section('navbar')
 <div class="nav">
     <div>
-        <a href="#">
+        <a href={{ route('edit-profile') }}>
             <h1 class="nav-header-txt">
                 <i class="fa-solid fa-pen fa-2xs"></i>
                  {{ auth()->user()->username }}

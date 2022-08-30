@@ -30,5 +30,9 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('/dashboard', function(){
         return view('dashboard');
     });
+
+    Route::get('/edit-profile', [ProfileController::class, 'getEditProfile'])->name('edit-profile');
+    Route::post('/edit-profile', [ProfileController::class, 'postEditProfile']);
+
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
