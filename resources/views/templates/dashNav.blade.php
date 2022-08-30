@@ -21,7 +21,7 @@
         <a href="#" class="nav-link-item">راهنما</a>
         <a href="#" class="nav-link-item">پیام ها</a>
         <a href="#" class="nav-link-item">برنامه</a>
-        <a href="#" class="nav-link-item">خروج</a>
+        <a href={{ route('logout') }} class="nav-link-item">خروج</a>
     </div>
 </div>
 @endsection

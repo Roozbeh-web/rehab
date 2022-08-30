@@ -101,4 +101,11 @@ class UserController extends Controller
             return redirect('/new-user-profile', 201);
         }
     }
+
+    public function logout(){
+        $id = auth()->id();
+        $user = User::where('id', $id)->first();
+        Auth::logout($user);
+        return redirect('/sign-in');
+    }
 }
