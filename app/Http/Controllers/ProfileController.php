@@ -11,6 +11,9 @@ use App\Models\Document;
 class ProfileController extends Controller
 {
     public function getNewUserProfile(){
+        if(auth()->user()->profile){
+            return redirect('/dashboard');
+        }
         return view('profile');
     }
 
