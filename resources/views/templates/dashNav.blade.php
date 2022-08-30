@@ -18,9 +18,14 @@
     <div class="nav-link">
         <a href="#" class="nav-link-item">خانه</a>
         <a href="#" class="nav-link-item">پست ها</a>
-        <a href="#" class="nav-link-item">راهنما</a>
+        @if (auth()->user()->type === 'helpseeker')
+            <a href="#" class="nav-link-item">راهنما</a>
+            <a href="#" class="nav-link-item">برنامه</a>
+        @else
+            <a href="#" class="nav-link-item">درخواست ها</a>
+            <a href="#" class="nav-link-item">مددجویان</a>
+        @endif
         <a href="#" class="nav-link-item">پیام ها</a>
-        <a href="#" class="nav-link-item">برنامه</a>
         <a href={{ route('logout') }} class="nav-link-item">خروج</a>
     </div>
 </div>

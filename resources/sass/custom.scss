@@ -58,6 +58,7 @@ a{
 .footer-link-item{
   color: $primary-color;
   font-size: 24px;
+  margin-right: 20px;
 }
 
 .first-container{
@@ -201,4 +202,13 @@ p{
 
 .user-type-txt{
   font-size: 12px;
+}
+
+.dash-footer-link{
+  display: flex;
+}
+
+.dash-footer-link-divider{
+  display: flex;
+  flex-direction: column;
 }
