@@ -1,7 +1,19 @@
 @section('navbar')
 <div class="nav">
     <div>
-        <a href="#"><h1 class="nav-header-txt"><i class="fa-solid fa-pen fa-2xs"></i> {{ auth()->user()->username }}</h1></a>
+        <a href="#">
+            <h1 class="nav-header-txt">
+                <i class="fa-solid fa-pen fa-2xs"></i>
+                 {{ auth()->user()->username }}
+                <span class="user-type-txt">
+                @if (auth()->user()->type === 'helpseeker')
+                    (مددجو) 
+                @else
+                    (راهنما)
+                @endif
+                </span>
+            </h1>
+        </a>
     </div>
     <div class="nav-link">
         <a href="#" class="nav-link-item">خانه</a>
