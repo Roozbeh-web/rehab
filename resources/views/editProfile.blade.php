@@ -21,6 +21,19 @@
                 <input type="password" name="password_confirmation"><br>
                 <label>عکس</label><br>
                 <input type="file" name="avatar"><br>
+                @if(auth()->user()->type == "leader") 
+                    <label>مدارک شناسایی (به صورت عکس)</label><br>
+                    @error('documents')
+                        <span class="error-txt">{{ $message }}</span><br>
+                    @enderror
+                    @if (session()->get('error'))
+                        <span class="error-txt">
+                            {{ session()->get('error') }}
+                        </span><br>
+                    @endif
+                    <input type="file" name="documents[]" multiple><br>
+                @endif
+                
             </div>
         </form>
     </div>
