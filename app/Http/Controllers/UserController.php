@@ -54,15 +54,14 @@ class UserController extends Controller
 
     public function postSignUp(Request $request){
         $validator = Validator::make($request->all(),[
-            'firstname' => 'required|string',
-            'lastname' => 'required|string',
+            'firstname' => 'required|string|max:60',
+            'lastname' => 'required|string|max:60',
             'username' => 'required|string|unique:users,username',
             'email' => 'required|unique:users,email',
-            'phone' => 'required|numeric',
-            'identity_code' => 'required|numeric',
+            'phone' => 'required|numeric|unique:users,phone',
+            'identity_code' => 'required|numeric|unique:users,identity_code',
             'type' => 'required',
-            'password' => 'required|string|confirmed'
-
+            'password' => 'required|string|confirmed|min:8'
         ],
         [
             'firstname.required' => 'وارد کردن نام الزامی است.',
@@ -73,11 +72,14 @@ class UserController extends Controller
             'email.unique' => 'کاربری با این ایمیل وجود دارد.',
             'phone.required' => 'وارد کردن شماره همراه الزامی است.',
             'phone.numeric' => 'فقط از اعداد استفاده کنید.',
+            'phone.unique' => 'کاربری با این شماره وجود دارد',
             'identity_code.required' => 'وارد کردن کد ملی الزامی است.',
             'identity_code.numeric' => 'فقط از اعداد استفاده کنید.',
+            'identity_code.unique' => 'کاربری با این شماره ملی وجود دارد',
             'type.required' => 'نوع کاربری خود را انتخاب کنید.',
             'password.required' => 'وارد کردن رمز عبور الزامی است',
-            'password.confirmed' => 'رمز عبور و تکرار آن مطابقت ندارد.'
+            'password.confirmed' => 'رمز عبور و تکرار آن مطابقت ندارد.',
+            'password.min' => 'رمز عبور باید حداقل ۸ کارکتر داشته باشد.'
         ]);
         if($validator->fails()){
             return Redirect::back()->withErrors($validator)->withInput();
