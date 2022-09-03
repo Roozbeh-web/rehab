@@ -12,11 +12,11 @@
                 </div>
             @endif
             @csrf
-            <label>نام کاربری</label><br>
+            <label>ایمیل</label><br>
             @error('username')
                 <div class="error-txt">{{ $message }}</div>
             @enderror
-            <input type="text" name="username"><br>
+            <input type="email" name="email" class="left-to-right-input"><br>
             <label>رمز عبور</label><br>
             @error('password')
                 <div class="error-txt">{{ $message }}</div>

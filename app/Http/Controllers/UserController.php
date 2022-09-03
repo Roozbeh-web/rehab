@@ -19,18 +19,18 @@ class UserController extends Controller
         $user = "";
         $validator = Validator::make($request->all(),
         [
-            'username'=> 'required|string',
+            'email'=> 'required|string',
             'password'=> 'required|string',
             ]
             ,[
-                'username.required' => 'وارد کردن نام کاربری الزامی است.',
+                'email.required' => 'وارد کردن نام کاربری الزامی است.',
                 'password.required' => 'وارد کردن رمز عبور الزامی است',
             ]);
             
             if($validator->fails()){
                 return Redirect::back()->withErrors($validator)->withInput();
             }else{
-                $user = User::where("username", $request->username)->first();
+                $user = User::where("email", $request->email)->first();
                 
                 
             if(!$user || !Hash::check($request->password, $user->password) ){
