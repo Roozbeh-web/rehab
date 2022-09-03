@@ -38,7 +38,8 @@ class UserController extends Controller
                 return Redirect::back()->with('error', $error)->withInput();
             }
             else{
-                Auth::login($user);
+                $remember_me  = ( empty( $request->remember ) )? FALSE : TRUE;
+                Auth::login($user, $remember_me);
                 if($user->profile){
                     return redirect('/dashboard');
                 }
