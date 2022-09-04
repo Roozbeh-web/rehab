@@ -26,7 +26,8 @@ class ToRedisServiceProvider extends ServiceProvider
     public function boot(Drug $drug)
     {
     if(!Redis::get('drugs')){
-        //
+        $drugs = Drug::all()->pluck('name')->toArray();
+        Redis::set('drugs', json_encode($drugs));
     }
     }
 }
