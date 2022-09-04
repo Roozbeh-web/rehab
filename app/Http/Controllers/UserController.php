@@ -43,7 +43,7 @@ class UserController extends Controller
                 if($user->profile){
                     return redirect('/dashboard');
                 }
-                return redirect('/profile');
+                return redirect('/new-user-profile');
             }
         }
     }

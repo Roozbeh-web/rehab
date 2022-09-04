@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Profile;
 use App\Models\Document;
+use Illuminate\Support\Facades\Redis;
 
 class ProfileController extends Controller
 {
@@ -14,10 +15,12 @@ class ProfileController extends Controller
         if(auth()->user()->profile){
             return redirect('/dashboard');
         }
-        return view('profile');
+        $drugs = json_decode(Redis::get('drugs'));
+        return view('profile', ['drugs' => $drugs]);
     }
 
     public function postNewUserProfile(Request $request){
+        dd($request->drugs);
         $validationDate = date('Y-m-d',strtotime('18 years ago'));
 
         $validator = Validator::make($request->all(),[

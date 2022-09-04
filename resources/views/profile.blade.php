@@ -13,6 +13,16 @@
                     <span class="error-txt">{{ $message }}</span><br>
                 @enderror
                 <input type="date" name="birthdate" value="{{old('birthdate')}}"><br>
+                <label>مواد مورد مصرف</label><br>
+                @error('drug')
+                    <span class="error-txt">{{ $message }}</span><br>
+                @enderror
+                <span class="notice">برای انتخاب چند ماده از ctrl بر روی کیبورد استفاذه کنید</span><br>
+                <select name="drugs[]" multiple>
+                    @foreach ($drugs as $drug)
+                        <option value={{$drug}}>{{$drug}}</option>
+                    @endforeach
+                </select><br>
             </div>
             <div class="ir-select">
                 <label>محل زندگی</label><br>
@@ -21,6 +31,7 @@
                 @enderror
                 <select class="ir-province" name="province"></select>
                 <select class="ir-city" name="city"></select><br>
+                
                 <label>عکس</label><br>
                 @error('avatar')
                     <span class="error-txt">{{ $message }}</span><br>
