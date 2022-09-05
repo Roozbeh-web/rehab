@@ -14,7 +14,7 @@
                 @enderror
                 <input type="date" name="birthdate" value="{{old('birthdate')}}"><br>
                 <label>مواد مورد مصرف</label><br>
-                @error('drug')
+                @error('drugs')
                     <span class="error-txt">{{ $message }}</span><br>
                 @enderror
                 <span class="notice">برای انتخاب چند ماده از ctrl بر روی کیبورد استفاذه کنید</span><br>

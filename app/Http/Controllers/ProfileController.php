@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Profile;
 use App\Models\Document;
+use App\Models\UserDrug;
 use Illuminate\Support\Facades\Redis;
 
 class ProfileController extends Controller
@@ -20,14 +21,14 @@ class ProfileController extends Controller
     }
 
     public function postNewUserProfile(Request $request){
-        dd($request->drugs);
         $validationDate = date('Y-m-d',strtotime('18 years ago'));
 
         $validator = Validator::make($request->all(),[
             'birthdate' => 'required|date|before:'.$validationDate,
             'province' => 'required',
             'city' => 'required',
-            'avatar' => 'image'
+            'avatar' => 'image',
+            'drugs' => 'required',
 
         ],
         [
@@ -36,7 +37,8 @@ class ProfileController extends Controller
             'province.required' => 'لطفا استان خود را انتخاب کنید.',
             'city.required' => 'لطفا شهر خود را انتخاب کنید.',
             'avatar.image' => 'فرمت فایل انتخابی اشتباه است.',
-            'avatar.size' => 'حجم عکس انتخابی باید کمتر از ۵ مگابایت باشد.'
+            'avatar.size' => 'حجم عکس انتخابی باید کمتر از ۵ مگابایت باشد.',
+            'drugs.required' => 'حداقل یک ماده انتخاب کنید.',
         ]);
 
         if($validator->fails()){
@@ -57,6 +59,13 @@ class ProfileController extends Controller
         $profile['birth_date'] = $request->birthdate;
         $profile['province'] = $request->province;
         $profile['city'] = $request->city;
+
+        foreach($request->drugs as $drug){
+            UserDrug::create([
+                'user_id' => auth()->id(),
+                'name' => $drug,
+            ]);
+        }
 
         if(auth()->user()->type === 'helpseeker'){
             $profile->save();
