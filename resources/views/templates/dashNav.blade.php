@@ -3,15 +3,16 @@
     <div>
         <a href={{ route('edit-profile') }}>
             <h1 class="nav-header-txt">
-                <i class="fa-solid fa-pen fa-2xs"></i>
-                 {{ auth()->user()->username }}
+                <img src="storage/{{auth()->user()->profile->image}}" alt="sag" width="36px">
+                {{ auth()->user()->username }}
                 <span class="user-type-txt">
-                @if (auth()->user()->type === 'helpseeker')
+                    @if (auth()->user()->type === 'helpseeker')
                     (مددجو) 
-                @else
+                    @else
                     (راهنما)
-                @endif
+                    @endif
                 </span>
+                <i class="fa-solid fa-pen fa-2xs"></i>
             </h1>
         </a>
     </div>

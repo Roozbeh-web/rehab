@@ -1,22 +1,45 @@
 <div class="edit-profile-container">
+    @php
+        $avatar = $user['avatar'];
+    @endphp
+    
     <h1>ویرایش مشخصات</h1>
-    <form action="/edit-profile" method="POST" enctype="multipart/form-data" class="edit-profile-form">
+    @if ($msg)
+        <span style="color: {{$color}}">{{$msg}}</span>
+    @endif
+    <form  wire:submit.prevent="makeChange" enctype="multipart/form-data" class="edit-profile-form">
         <div>
+            @csrf
             <label>نام</label><br>
-            <input type="text" name="firstname"><br>
+            @error('firstName')
+                <span class="error" style="color: red">{{ $message }}</span><br>
+            @enderror
+            <input wire:model="firstName" type="text" name="firstname" placeholder={{$user['first_name']}}><br>
             <label>رمز عبور</label><br>
-            <input type="password" name="password"><br>
+            @error('password')
+                <span class="error" style="color: red">{{ $message }}</span><br>
+            @enderror
+            <input type="password" name="password" wire:model="password"><br>
             <label>شماره تماس</label><br>
-            <input type="text" name="phone"><br>
+            @error('phone')
+                <span class="error" style="color: red">{{ $message }}</span><br>
+            @enderror
+            <input type="text" name="phone" wire:model="phone" placeholder={{$user['phone']}}><br>
             <button type="submit" class="profile-btn btn">ثبت‌</button>
         </div>
         <div>
             <label>نام خانوادگی</label><br>
-            <input type="text" name="lastname"><br>
+            @error('lastName')
+                <span class="error" style="color: red">{{ $message }}</span><br>
+            @enderror
+            <input type="text" name="lastname" wire:model="lastName" placeholder="{{$user['last_name']}}"><br>
             <label>تکرار رمز عبور</label><br>
-            <input type="password" name="password_confirmation"><br>
+            <input type="password" name="password_confirmation" wire:model="password_confirmation"><br>
             <label>عکس</label><br>
-            <input type="file" name="avatar"><br>
+            @error('avatar')
+                <span class="error" style="color: red">{{ $message }}</span><br>
+            @enderror
+            <input type="file" wire:model="avatar"><br>
             @if(auth()->user()->type == "leader") 
                 <label>مدارک شناسایی (به صورت عکس)</label><br>
                 @error('documents')
