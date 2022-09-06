@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -19,7 +20,7 @@ class EditProfile extends Component
     public $password;
     public $password_confirmation;
     public $msg;
-    public $color;
+    public $color = 'green';
 
     protected $rules = [
         'firstName' => 'nullable|string|max:60',
@@ -73,8 +74,8 @@ class EditProfile extends Component
             $this->color = 'red';
         }
         if(!$this->msg){
-            $this->color = 'green';
             $this->msg = 'تغییرات با موفقیت ثبت شد.';
+            return Redirect::route('edit-profile')->with('msg',$this->msg);
         }
     }
     

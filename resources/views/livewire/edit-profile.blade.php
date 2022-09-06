@@ -1,12 +1,16 @@
-<div class="edit-profile-container">
-    @php
-        $avatar = $user['avatar'];
-    @endphp
-    
+<div class="edit-profile-container">    
     <h1>ویرایش مشخصات</h1>
     @if ($msg)
-        <span style="color: {{$color}}">{{$msg}}</span>
+    <span style="color: {{$color}}">
+        {{ $msg }}
+    </span>
     @endif
+    @if (session()->get('msg'))
+    <span style="color: {{$color}}">
+        {{ session()->get('msg') }}
+    </span>
+@endif
+
     <form  wire:submit.prevent="makeChange" enctype="multipart/form-data" class="edit-profile-form">
         <div>
             @csrf
