@@ -3,7 +3,7 @@
     <div>
         <a href={{ route('edit-profile') }}>
             <h1 class="nav-header-txt">
-                <img src="storage/{{auth()->user()->profile->image}}" alt="sag" width="36px">
+                <img src="storage/{{auth()->user()->profile->image}}" alt="" width="36px">
                 {{ auth()->user()->username }}
                 <span class="user-type-txt">
                     @if (auth()->user()->type === 'helpseeker')

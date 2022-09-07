@@ -42,7 +42,9 @@ class EditProfile extends Component
 
     public function makeChange(){
         $this->validate();
+
         $user = User::where('id', auth()->id())->first();
+
         if($this->firstName){
             $user->update(['first_name'=>$this->firstName]);
             $this->firstName = null;
