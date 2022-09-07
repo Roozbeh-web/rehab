@@ -49,9 +49,13 @@ class ProfileController extends Controller
 
         if($request->file('avatar')){
             $image = $request->file('avatar');
-            $imageName = auth()->user()->username.$image->getClientOriginalName();
-            $image->move(public_path('public/Image'), $imageName);
-            $profile['image'] = $imageName;
+
+            $path = $image->storeAs('public/avatar/'.auth()->user()->username, auth()->user()->username.".".$image->extension());
+            
+            $pathArray = explode('/', $path);
+            $path = $pathArray[1] . '/' . $pathArray[2] . '/' . $pathArray[3];
+
+            $profile['image'] = $path;
         }
 
         $profile['user_id'] = auth()->id();
@@ -104,11 +108,14 @@ class ProfileController extends Controller
                 $isFit = $size < $maxSize ? true : false;
 
                 if($check && $isFit){
-                    $document->move(public_path('public/documents/'. $username . "/"), $documentName);
+                    $path = $document->storeAs('public/document/'.$username, $documentName);
+            
+                    $pathArray = explode('/', $path);
+                    $path = $pathArray[1] . '/' . $pathArray[2] . '/' . $pathArray[3];
 
                     Document::create([
                         'user_id' => auth()->id(),
-                        'document' => $documentName,
+                        'document' => $path,
                     ]);
                 }
                 
@@ -136,7 +143,4 @@ class ProfileController extends Controller
         return view('editProfile');
     }
 
-    public function postEditProfile(Request $request){
-        //
-    }
 }

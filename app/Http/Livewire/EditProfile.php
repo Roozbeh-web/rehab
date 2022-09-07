@@ -61,7 +61,6 @@ class EditProfile extends Component
             
             $pathArray = explode('/', $path);
             $path = $pathArray[1] . '/' . $pathArray[2] . '/' . $pathArray[3];
-            // dd($path);
             $user->profile->update(['image'=>$path]);
             $this->avatar = null;
         }
