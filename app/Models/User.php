@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function documents(){
         return $this->hasMany(Document::class, 'user_id', 'id');
     }
+
+    public function posts(){
+        return $this->hasMany(Post::class, 'user_id', 'id');
+    }
 }
