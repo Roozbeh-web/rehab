@@ -5,12 +5,11 @@
         {{ $msg }}
     </span>
     @endif
-    @if (session()->get('msg'))
-    <span style="color: {{$color}}">
-        {{ session()->get('msg') }}
-    </span>
-@endif
-
+        @if (session()->get('msg'))
+        <span style="color: {{$color}}">
+            {{ session()->get('msg') }}
+        </span>
+    @endif
     <form  wire:submit.prevent="makeChange" enctype="multipart/form-data" class="edit-profile-form">
         <div>
             @csrf
