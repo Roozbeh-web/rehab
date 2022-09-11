@@ -17,7 +17,10 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => 1,
+            'title' => fake()->title(),
+            'body' => fake()->paragraph(),
+            'image' => 'avatar/roozbeh/roozbeh.png',
         ];
     }
 }
