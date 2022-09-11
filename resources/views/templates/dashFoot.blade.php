@@ -6,7 +6,7 @@
     <div class="dash-footer-link">
         <div class="dash-footer-link-divider">
             <a href={{ route('dashboard') }} class="footer-link-item">خانه</a>
-            <a href="#" class="footer-link-item">پست ها</a>
+            <a href={{ route('posts') }} class="footer-link-item">پست ها</a>
             <a href="#" class="footer-link-item">پیام ها</a>
         </div>
         <div class="dash-footer-link-divider">
