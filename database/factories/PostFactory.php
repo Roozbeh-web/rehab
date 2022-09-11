@@ -22,8 +22,8 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'title' => fake()->title(),
-            'body' => fake()->paragraph(),
+            'title' => 'لورم ایپسوم',
+            'body' => 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز',
             'image' => 'avatar/roozbeh/roozbeh.png',
         ];
     }
