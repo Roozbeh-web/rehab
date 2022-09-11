@@ -2,7 +2,9 @@
 @extends('templates.dashNav')
 
 @section('content')
-    
+@livewireStyles
+    <livewire:posts />
+@livewireScripts
 @endsection
 
 
