@@ -18,6 +18,14 @@ class Posts extends Component
         }
     }
 
+    public function edit($id){
+        return redirect('/edit-post/'.$id);
+    }
+
+    public function remove($id){
+        //
+    }
+
     public function render()
     {   $this->posts = User::where('id', auth()->id())->first()->posts;
         return view('livewire.posts');

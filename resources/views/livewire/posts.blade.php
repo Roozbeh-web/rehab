@@ -23,8 +23,8 @@
                 <p class="left-to-right-input">{{$post->created_at}}</p>
             </div>
             <div>
-                <button class="btn btn-edit">ویرایش</button>
-                <button class="btn btn-danger">حذف</button>
+                <button wire:click="edit({{$post->id}})" class="btn btn-edit">ویرایش</button>
+                <button wire:click="remove({{$post->id}})" class="btn btn-danger">حذف</button>
             </div>
         </div>
     @endforeach
