@@ -8,6 +8,15 @@ use Livewire\Component;
 class Posts extends Component
 {
     public $posts;
+    public $collapse = true;
+    public $postId;
+
+    public function doCollapse($id){
+        $this->postId = $id;
+        if($id == $this->postId){
+            $this->collapse = !$this->collapse;
+        }
+    }
 
     public function render()
     {   $this->posts = User::where('id', auth()->id())->first()->posts;

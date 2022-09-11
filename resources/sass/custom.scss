@@ -251,11 +251,48 @@ p{
 .card-container{
   flex: 0 0 33.333333%;
   margin: 40px 10px;
-  padding: 40px 10px;
+  padding: 20px 10px;
   background-color: $primary-color;
+  border-radius: 18px;
+}
+
+.title-container{
+  margin-bottom: 20px;
+}
+
+.image-container{
+  background-color: $dark-color;
+  padding: 10px;
   border-radius: 18px;
 }
 
 .post-img{
   width: 240px;
+}
+
+.collapse-btn{
+  border: none;
+  background-color: $primary-color;
+  color: $link-color;
+  font-family: $font-stack;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.collapse-btn:hover{
+  cursor: pointer;
+  font-style: italic;
+}
+
+.btn-danger{
+  background-color: rgb(165, 9, 9);
+}
+
+.btn-edit:hover{
+  background-color: white;
+}
+
+.btn-danger:hover{
+  color: rgb(165, 9, 9);
+  background-color: white;
 }
