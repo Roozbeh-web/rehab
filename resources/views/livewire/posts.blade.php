@@ -33,12 +33,12 @@
                     @endif
                  </p>
             </div>
-            <div class="post-detail-container">
-                <p class="left-to-right-input">{{$post->created_at}}</p>
-            </div>
             <div>
                 <button wire:click="edit({{$post->id}})" class="btn btn-edit">ویرایش</button>
                 <button wire:click="removeModal({{ $post->id }}, {{ $post->id}})" class="btn btn-danger">حذف</button>
+            </div>
+            <div class="post-detail-container">
+                <p class="left-to-right-input">{{$post->created_at}}</p>
             </div>
         </div>
     @endforeach

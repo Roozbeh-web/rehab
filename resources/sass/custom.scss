@@ -264,10 +264,15 @@ p{
   background-color: $dark-color;
   padding: 10px;
   border-radius: 18px;
+  text-align: center;
 }
 
 .post-img{
   width: 240px;
+}
+
+.body-container{
+  margin: 20px 0;
 }
 
 .collapse-btn{
