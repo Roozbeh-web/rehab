@@ -11,7 +11,7 @@
                 <p>{{$post->body}}</p>
             </div>
             <div class="post-detail-container">
-                <p>{{$post->created_at}}</p>
+                <p class="left-to-right-input">{{$post->created_at}}</p>
             </div>
         </div>
     @endforeach
