@@ -402,3 +402,41 @@ hr {
     width: 100%;
   }
 }
+
+.leader-card-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $dark-color;
+  margin: 90px 340px;
+  padding: 20px 90px;
+  color: white;
+  border-radius: 30px;
+}
+
+.leader-bio-container{
+  width: 230px;
+}
+
+.leader-card-row1{
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+
+.leader-card-container h1{
+  margin: 0;
+}
+
+.leader-img-container img{
+  width: 140px;
+  border-radius: 100%;
+  margin-top: 30px;
+}
+
+.leader-request-btn{
+  background-color: #04AA6D;
+  margin-top: 20px;
+  color: black;
+  padding: 2px 20px 12px 20px;
+}
