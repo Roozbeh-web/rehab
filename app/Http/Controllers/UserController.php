@@ -111,4 +111,8 @@ class UserController extends Controller
         Auth::logout($user);
         return redirect('/sign-in');
     }
+
+    public function getLeaders(){
+        return view('leaders');
+    }
 }

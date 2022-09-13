@@ -36,5 +36,7 @@ Route::group(['middleware'=>['auth']], function(){
 
     Route::get('/edit-profile', [ProfileController::class, 'getEditProfile'])->name('edit-profile');
 
+    Route::get('/leaders', [UserController::class , 'getLeaders']);
+    
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
