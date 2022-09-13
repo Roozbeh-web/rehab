@@ -3,7 +3,7 @@
 
 @section('content')
 @livewireStyles
-   
+    <livewire:edit-post />
 @livewireScripts
 @endsection
 
