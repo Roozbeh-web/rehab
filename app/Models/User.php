@@ -26,6 +26,8 @@ class User extends Authenticatable
         'identity_code',
         'email',
         'password',
+        'city',
+        'province',
     ];
 
     /**

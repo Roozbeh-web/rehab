@@ -13,7 +13,6 @@ class Profile extends Model
         'user_id',
         'image',
         'bio',
-        'city',
         'validation',
         'birth_date',
         'quit_date',
