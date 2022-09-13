@@ -25,8 +25,6 @@ class ProfileController extends Controller
 
         $validator = Validator::make($request->all(),[
             'birthdate' => 'required|date|before:'.$validationDate,
-            'province' => 'required',
-            'city' => 'required',
             'avatar' => 'image',
             'drugs' => 'required',
 
@@ -34,8 +32,6 @@ class ProfileController extends Controller
         [
             'birthdate.required' => 'وارد کردن تاریخ تولد الزامی است.',
             'birthdate.before' => 'حداقل سن باید ۱۸ سال باشد.',
-            'province.required' => 'لطفا استان خود را انتخاب کنید.',
-            'city.required' => 'لطفا شهر خود را انتخاب کنید.',
             'avatar.image' => 'فرمت فایل انتخابی اشتباه است.',
             'avatar.size' => 'حجم عکس انتخابی باید کمتر از ۵ مگابایت باشد.',
             'drugs.required' => 'حداقل یک ماده انتخاب کنید.',
@@ -61,8 +57,6 @@ class ProfileController extends Controller
         $profile['user_id'] = auth()->id();
         $profile['bio'] = $request->bio;
         $profile['birth_date'] = $request->birthdate;
-        $profile['province'] = $request->province;
-        $profile['city'] = $request->city;
 
         foreach($request->drugs as $drug){
             UserDrug::create([

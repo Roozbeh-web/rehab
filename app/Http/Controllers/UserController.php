@@ -61,7 +61,9 @@ class UserController extends Controller
             'phone' => 'required|numeric|unique:users,phone',
             'identity_code' => 'required|numeric|unique:users,identity_code',
             'type' => 'required',
-            'password' => 'required|string|confirmed|min:8'
+            'password' => 'required|string|confirmed|min:8',
+            'province' => 'required',
+            'city' => 'required',
         ],
         [
             'firstname.required' => 'وارد کردن نام الزامی است.',
@@ -79,7 +81,9 @@ class UserController extends Controller
             'type.required' => 'نوع کاربری خود را انتخاب کنید.',
             'password.required' => 'وارد کردن رمز عبور الزامی است',
             'password.confirmed' => 'رمز عبور و تکرار آن مطابقت ندارد.',
-            'password.min' => 'رمز عبور باید حداقل ۸ کارکتر داشته باشد.'
+            'password.min' => 'رمز عبور باید حداقل ۸ کارکتر داشته باشد.',
+            'province.required' => 'لطفا استان خود را انتخاب کنید.',
+            'city.required' => 'لطفا شهر خود را انتخاب کنید.',
         ]);
         if($validator->fails()){
             return Redirect::back()->withErrors($validator)->withInput();
@@ -94,6 +98,8 @@ class UserController extends Controller
                 'type' => $request->type,
                 'identity_code' => $request->identity_code,
                 'password' => bcrypt($request->password),
+                'province' => $request->province,
+                'city' => $request->city,
             ]);
 
             $token = $user->createToken('mytoken')->plainTextToken;

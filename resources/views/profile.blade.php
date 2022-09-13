@@ -13,28 +13,12 @@
                     <span class="error-txt">{{ $message }}</span><br>
                 @enderror
                 <input type="date" name="birthdate" value="{{old('birthdate')}}"><br>
-                <label>مواد مورد مصرف</label><br>
-                @error('drugs')
-                    <span class="error-txt">{{ $message }}</span><br>
-                @enderror
-                <span class="notice">برای انتخاب چند ماده از ctrl بر روی کیبورد استفاذه کنید</span><br>
-                <select name="drugs[]" multiple>
-                    @foreach ($drugs as $drug)
-                        <option value={{$drug}}>{{$drug}}</option>
-                    @endforeach
-                </select><br>
-            </div>
+            
+        </div>
             <div class="ir-select">
-                <label>محل زندگی</label><br>
-                @error('city')
-                    <span class="error-txt">{{ $message }}</span><br>
-                @enderror
-                <select class="ir-province" name="province"></select>
-                <select class="ir-city" name="city"></select><br>
-                
                 <label>عکس</label><br>
                 @error('avatar')
-                    <span class="error-txt">{{ $message }}</span><br>
+                <span class="error-txt">{{ $message }}</span><br>
                 @enderror
                 <input type="file" name="avatar"><br>
                 @if(auth()->user()->type == "leader")
@@ -51,15 +35,24 @@
                     <label>تاریخ ترک</label><br>
                     @error('quit_date')
                         <span class="error-txt">{{ $message }}</span><br>
-                    @enderror
-                    <input type="date" name="quit_date" value="{{old('quit_date')}}"><br>
-                @endif
-                <button class="profile-btn btn" type="submit">ثبت</button>
-            </div>
-            <div>
+                        @enderror
+                        <input type="date" name="quit_date" value="{{old('quit_date')}}"><br>
+                        @endif
+                        <label>مواد مورد مصرف</label><br>
+                        @error('drugs')
+                            <span class="error-txt">{{ $message }}</span><br>
+                        @enderror
+                        <span class="notice">برای انتخاب چند ماده از ctrl بر روی کیبورد استفاذه کنید</span><br>
+                        <select name="drugs[]" multiple>
+                            @foreach ($drugs as $drug)
+                                <option value={{$drug}}>{{$drug}}</option>
+                            @endforeach
+                        </select><br>
+                        <button class="profile-btn btn" type="submit">ثبت</button>
+                    </div>
+                    <div>
             </div>
         </form>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" defer></script>
-    <script src="https://github.com/KayvanMazaheri/ir-city-select/releases/download/v0.2.0/ir-city-select.min.js" defer></script>
+    
     @endsection

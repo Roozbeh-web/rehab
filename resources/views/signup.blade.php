@@ -28,14 +28,21 @@
                 <div class="error-txt">{{ $message }}</div>
             @enderror
             <input type="password" name="password" class="left-to-right-input"><br>
+            <div class="ir-select">
+                <label>محل زندگی</label><br>
+                @error('city')
+                    <span class="error-txt">{{ $message }}</span><br>
+                @enderror
+                <select class="ir-province" name="province"></select>
+                <select class="ir-city" name="city"></select><br>
+            </div>
             @error('type')
             <div class="error-txt">{{ $message }}</div>
             @enderror
             <label>مددجو</label>
             <input type="radio" name="type" value="helpseeker">
             <label>راهنما</label>
-            <input type="radio" name="type" value="leader">
-            <button type="submit" class="signup-btn">ثبت‌نام</button>
+            <input type="radio" name="type" value="leader"><br>
         </div>
         <div>
             <label>نام خانوادگی</label><br>
@@ -55,6 +62,8 @@
             <input type="text" name="identity_code" class="left-to-right-input" value="{{old('identity_code')}}"><br>
             <label>تکرار رمز عبور</label><br>
             <input type="password" name="password_confirmation" class="left-to-right-input"><br>
+            
+            <button type="submit" class="signup-btn">ثبت‌نام</button>
         </div> 
         <div>
         </div>
@@ -62,5 +71,6 @@
     <img src="{{ URL::to('/assets/images/sign-up.png') }}" class="signup-img">
 </div>
 @endsection
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" defer></script>
+    <script src="https://github.com/KayvanMazaheri/ir-city-select/releases/download/v0.2.0/ir-city-select.min.js" defer></script>
 @extends('templates.footer')
