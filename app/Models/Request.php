@@ -12,5 +12,6 @@ class Request extends Model
     public $fillable = [
         'leader_id',
         'helpseeker_id',
+        'status',
     ];
 }

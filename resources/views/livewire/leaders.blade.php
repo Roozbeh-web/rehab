@@ -35,7 +35,7 @@
                             <p>شهر: {{$leader->city}}</p>
                         </div>
                         <div >
-                            <button class="btn leader-request-btn">ارسال درخواست</button>
+                            <button wire:click="sendRequest({{$leader->id}})" class="btn leader-request-btn">ارسال درخواست</button>
                         </div>
                     </div>
                 </div>
