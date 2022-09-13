@@ -10,6 +10,7 @@ class Leaders extends Component
 {
     public $leaders;
     public $leaderId;
+    public $requests;
 
     public function sendRequest($leaderId){
         Request::create([
@@ -25,6 +26,7 @@ class Leaders extends Component
     {   
         $province = auth()->user()->province;
         $this->leaders = User::where('type', 'leader')->where('province', $province)->get();
+        $this->requests = Request::where('helpseeker_id', auth()->id())->get();
         return view('livewire.leaders');
     }
 }

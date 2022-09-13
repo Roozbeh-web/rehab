@@ -440,3 +440,18 @@ hr {
   color: black;
   padding: 2px 20px 12px 20px;
 }
+
+.leader-cancel-btn{
+  background-color: rgb(134, 3, 3);
+  margin-top: 20px;
+  padding: 2px 20px 12px 20px;
+}
+
+.warn-container{
+  margin: 40px 90px;
+  display: flex;
+}
+
+.warn-container span{
+  color: red;
+}

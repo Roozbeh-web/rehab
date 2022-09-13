@@ -60,4 +60,12 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany(Post::class, 'user_id', 'id')->latest('id');
     }
+
+    public function leaders(){
+        return $this->hasMany(Request::class, 'helpseeker_id', 'id');
+    }
+
+    public function helpseekers(){
+        return $this->hasMany(Request::class, 'leaders_id', 'id');
+    }
 }
