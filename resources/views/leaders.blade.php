@@ -3,7 +3,7 @@
 
 @section('content')
 @livewireStyles
-
+    <livewire:leaders />
 @livewireScripts
 @endsection
 
