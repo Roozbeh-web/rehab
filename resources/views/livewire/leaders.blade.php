@@ -4,7 +4,6 @@
             <p> وقتی یک راهنما درخواست شما را قبول کند دیگر نمیتوانید لیست راهنما ها را مشاهده کنید مگر ارتباط خود را با راهنمایتان قطع کنید. </p>
     </div>
     @foreach ($leaders as $leader)
-    @foreach ($requests as $request)        
         <div class="leader-container">
             <div class="leader-card-container">
                     <div class="leader-card-col">
@@ -40,8 +39,22 @@
                                 <p>شهر: {{$leader->city}}</p>
                             </div>
                             <div >
-                                @if ($leader->id === $request->leader_id && $request->status === 'pending')
-                                    <button wire:click="sendRequest({{$leader->id}})" class="btn leader-cancel-btn">لغو درخواست</button>        
+                                @php
+                                    $cancelBtnCreated = false;
+                                @endphp
+                                @if($requests->all())
+                                    @foreach ($requests as $request)
+                                        @if ($leader->id === $request->leader_id)
+                                            <button wire:click="cancelRequest({{$leader->id}})" class="btn leader-cancel-btn">لغو درخواست</button>
+                                            @php
+                                                $cancelBtnCreated = true;   
+                                            @endphp
+                                        @endif
+
+                                    @endforeach
+                                        @if(!$cancelBtnCreated)
+                                            <button wire:click="sendRequest({{$leader->id}})" class="btn leader-request-btn">ارسال درخواست</button>
+                                        @endif
                                 @else
                                     <button wire:click="sendRequest({{$leader->id}})" class="btn leader-request-btn">ارسال درخواست</button>
                                 @endif
@@ -50,6 +63,5 @@
                     </div>
                 </div>
             </div>
-        @endforeach
     @endforeach
 </div>

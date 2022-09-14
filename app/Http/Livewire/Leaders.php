@@ -18,8 +18,10 @@ class Leaders extends Component
             'leader_id' => $leaderId,
             'status' => 'pending',
         ]);
+    }
 
-        dd('done');
+    public function cancelRequest($leaderId){
+        Request::where('leader_id', $leaderId)->where('helpseeker_id', auth()->id())->delete();
     }
 
     public function render()
