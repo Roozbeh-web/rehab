@@ -124,4 +124,8 @@ class UserController extends Controller
         }
         return view('leaders');
     }
+
+    public function helpseekersRequest(){
+        return view('requests');
+    }
 }
