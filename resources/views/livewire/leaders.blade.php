@@ -13,34 +13,54 @@
                     <div class="leader-card-col">
                         <div class="leader-card-row1">
                             <div class="leader-img-container">
-                                <img src="storage/{{$leader->profile->image}}" alt="leader-img">
+                                <img src="storage/{{$leader['avatar']}}" alt="leader-img">
                             </div>
+                            @if ($leader['bio'])
                             <div class="leader-bio-container">
-                                <p>{{$leader->profile->bio}}</p>
+                                <p>{{$leader['bio']}}</p>
                             </div>
+                                
+                            @endif
                             
                         </div>
                     </div>
                     <div class="leader-card-col">
                         <div class="leader-card-row">
                             <div class="leader-username-container">
-                                <span><h1>{{$leader->username}}</h1></span>
+                                <span><h1>{{$leader['username']}}</h1></span>
                             </div>
                             <div class="leader-name-container">
-                                <span><p>{{$leader->first_name}} {{$leader->last_name}}</p></span>
+                                <span><p>{{$leader['first_name']}} {{$leader['last_name']}}</p></span>
                             </div>
                             <div class="leader-quit-container">
                                 @php
-                                    $quitDate = new DateTime($leader->profile->quit_date);
+                                    $quitDate = new DateTime($leader['quit_date']);
+                                    $birthDate = new DateTime($leader['birth_date']);
                                     $now = new DateTime();
-                                    $interval = $now->diff($quitDate)->y;
+                                    
+                                    $quitInterval = $now->diff($quitDate)->y;
+                                    $ageInterval = $now->diff($birthDate)->y;
+
 
                                 @endphp
-                                <span><p>مدت پاکی: {{$interval}} سال</p></span>
+                                <span><p>مدت پاکی: {{$quitInterval}} سال</p></span>
+                            </div>
+                            <div class="leader-quit-container">
+                                @php
+                                    $quitDate = new DateTime($leader['quit_date']);
+                                    $birthDate = new DateTime($leader['birth_date']);
+                                    $now = new DateTime();
+                                    
+                                    $quitInterval = $now->diff($quitDate)->y;
+                                    $ageInterval = $now->diff($birthDate)->y;
+
+
+                                @endphp
+                                <span><p>سن: {{$ageInterval}} سال</p></span>
                             </div>
                             <div class="leader-loc-container">
-                                <p>استان: {{$leader->province}}</p>
-                                <p>شهر: {{$leader->city}}</p>
+                                <p>استان: {{$leader['province']}}</p>
+                                <p>شهر: {{$leader['city']}}</p>
                             </div>
                             <div >
                                 @php
@@ -48,8 +68,8 @@
                                 @endphp
                                 @if($requests->all())
                                     @foreach ($requests as $request)
-                                        @if ($leader->id === $request->leader_id)
-                                            <button wire:click="cancelRequest({{$leader->id}})" class="btn leader-cancel-btn">لغو درخواست</button>
+                                        @if ($leader['id'] === $request->leader_id)
+                                            <button wire:click="cancelRequest({{$leader['id']}})" class="btn leader-cancel-btn">لغو درخواست</button>
                                             @php
                                                 $cancelBtnCreated = true;   
                                             @endphp
@@ -57,10 +77,10 @@
 
                                     @endforeach
                                         @if(!$cancelBtnCreated)
-                                            <button wire:click="sendRequest({{$leader->id}})" class="btn leader-request-btn">ارسال درخواست</button>
+                                            <button wire:click="sendRequest({{$leader['id']}})" class="btn leader-request-btn">ارسال درخواست</button>
                                         @endif
                                 @else
-                                    <button wire:click="sendRequest({{$leader->id}})" class="btn leader-request-btn">ارسال درخواست</button>
+                                    <button wire:click="sendRequest({{$leader['id']}})" class="btn leader-request-btn">ارسال درخواست</button>
                                 @endif
                             </div>
                         </div>

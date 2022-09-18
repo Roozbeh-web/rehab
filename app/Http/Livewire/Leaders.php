@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Resources\LeaderResource;
 use App\Models\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
@@ -41,6 +42,7 @@ class Leaders extends Component
                     ->orWhere('city', 'LIKE', '%' . $search[0] . '%')
                     ;
                 })->get();
+
             }
             elseif(count($search) >= 2){
                 // dd($search[1]);
@@ -48,7 +50,7 @@ class Leaders extends Component
                     $query->where(function($q) use($search){
                         $q->where('first_name', 'LIKE', '%' . $search[0] . '%')
                         ->where('last_name', 'LIKE', '%' . $search[1] . '%');
-
+                        
                     })
                     ->orWhere(function($q) use($search){
                         $q->where('province', 'LIKE', '%' . $search[0] . '%')
@@ -59,10 +61,11 @@ class Leaders extends Component
             }
             
         }
-
+        
         else{
             $province = auth()->user()->province;
-            $this->leaders = User::where('type', 'leader')->where('province', $province)->get();
+            $leaders = User::where('type', 'leader')->where('province', $province)->get();
+            $this->leaders = LeaderResource::collection($leaders)->toArray('');
             $this->requests = Request::where('helpseeker_id', auth()->id())->get();
         }
         return view('livewire.leaders');

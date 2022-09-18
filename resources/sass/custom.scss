@@ -428,6 +428,13 @@ hr {
   margin: 0;
 }
 
+.leader-bio-container{
+  background-color: $secondary-color;
+  color: $dark-color;
+  padding: 20px 40px;
+  border-radius: 18px;
+}
+
 .leader-img-container img{
   width: 140px;
   border-radius: 100%;
