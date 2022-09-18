@@ -66,6 +66,10 @@ class User extends Authenticatable
     }
 
     public function helpseekers(){
-        return $this->hasMany(Request::class, 'leaders_id', 'id');
+        return $this->hasMany(Request::class, 'leader_id', 'id');
+    }
+
+    public function drugs(){
+        return $this->hasMany(UserDrug::class, 'user_id', 'id');
     }
 }

@@ -14,4 +14,8 @@ class Request extends Model
         'helpseeker_id',
         'status',
     ];
+
+    public function helpseeker(){
+        return $this->hasOne(User::class, 'id', 'helpseeker_id');
+    }
 }
