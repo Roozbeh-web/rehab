@@ -11,7 +11,7 @@
         </div>
         <div class="dash-footer-link-divider">
             @if (auth()->user()->type === 'helpseeker')
-                <a href="#" class="footer-link-item">راهنما</a>
+                <a href={{ route('leaders') }} class="footer-link-item">راهنما</a>
                 <a href="#" class="footer-link-item">برنامه</a>
             @else
                 <a href="#" class="footer-link-item">درخواست</a>

@@ -19,7 +19,7 @@
     <div class="nav-link">
         <a href={{ route('dashboard') }} class="nav-link-item">خانه</a>
         @if (auth()->user()->type === 'helpseeker')
-            <a href="#" class="nav-link-item">راهنما</a>
+            <a href={{ route('leaders') }} class="nav-link-item">راهنما</a>
             <a href="#" class="nav-link-item">برنامه</a>
         @else
             <a href="#" class="nav-link-item">درخواست ها</a>

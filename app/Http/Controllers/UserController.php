@@ -119,6 +119,9 @@ class UserController extends Controller
     }
 
     public function getLeaders(){
+        if(auth()->user()->type === 'leader'){
+            return Redirect::back();
+        }
         return view('leaders');
     }
 }

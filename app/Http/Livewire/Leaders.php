@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
 class Leaders extends Component
