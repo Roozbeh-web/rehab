@@ -30,6 +30,11 @@ class Leaders extends Component
 
     public function render()
     {   
+        if(Request::where('helpseeker_id', auth()->id())->where('status', 'accept')->first()){
+            $leader = Request::where('helpseeker_id', auth()->id())->where('status', 'accept')->first()->leader;
+            $this->leaders = $leader;
+        }
+
         if($this->search){
             $search = explode(' ',$this->search);
             

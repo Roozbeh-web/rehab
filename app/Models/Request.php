@@ -18,4 +18,8 @@ class Request extends Model
     public function helpseeker(){
         return $this->hasOne(User::class, 'id', 'helpseeker_id');
     }
+
+    public function leader(){
+        return $this->hasOne(User::class, 'id', 'leader_id');
+    }
 }
