@@ -31,10 +31,10 @@
                                 @endforeach
                                 <div class="btn-container">
                                     <div>
-                                        <button class="btn helpseeker-request-btn">قبول درخواست</button>
+                                        <button wire:click="sendRequest({{ $request->helpseeker_id}}, 1)" class="btn helpseeker-request-btn">قبول درخواست</button>
                                     </div>
                                     <div>
-                                        <button class="btn helpseeker-cancel-btn">رد درخواست</button>
+                                        <button wire:click="sendRequest({{ $request->helpseeker_id}}, 0)" class="btn helpseeker-cancel-btn">رد درخواست</button>
                                     </div>
                                 </div>
                             </span>
