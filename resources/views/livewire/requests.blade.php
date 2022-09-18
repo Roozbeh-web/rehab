@@ -1,4 +1,9 @@
 <div>
+    @if (empty($requests->all()))
+        <div class="notice-container">
+            <h1>درخواستی وجود ندارد</h1>
+        </div>
+    @endif
     @foreach ($requests as $request)
         <div class="leader-container">
             <div class="leader-card-container">
@@ -31,11 +36,14 @@
                                 @endforeach
                                 <div class="btn-container">
                                     <div>
-                                        <button wire:click="sendRequest({{ $request->helpseeker_id}}, 1)" class="btn helpseeker-request-btn">قبول درخواست</button>
+                                        <button wire:click="sendRequest({{ $request->helpseeker_id}}, 'accept')" class="btn helpseeker-request-btn">قبول درخواست</button>
                                     </div>
                                     <div>
-                                        <button wire:click="sendRequest({{ $request->helpseeker_id}}, 0)" class="btn helpseeker-cancel-btn">رد درخواست</button>
+                                        <button wire:click="sendRequest({{ $request->helpseeker_id}}, 'reject')" class="btn helpseeker-cancel-btn">رد درخواست</button>
                                     </div>
+                                </div>
+                                <div>
+                                    <a wire:click="sendRequest({{ $request->helpseeker_id}}, 'block')" class="block-linkbtn">بلاک</button>
                                 </div>
                             </span>
                         </div>

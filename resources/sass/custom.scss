@@ -488,3 +488,18 @@ hr {
   border-radius: 12px;
   border: none;
 }
+
+.notice-container{
+  text-align: center;
+  padding: 140px 0;
+}
+
+.block-linkbtn{
+  color:rgb(255, 252, 95);
+}
+
+.block-linkbtn:hover{
+  text-decoration: underline;
+  font-style: italic;
+  cursor: pointer;
+}
