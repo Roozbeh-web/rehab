@@ -12,6 +12,8 @@ class Leaders extends Component
     public $leaderId;
     public $requests;
 
+    public $search;
+
     public function sendRequest($leaderId){
         Request::create([
             'helpseeker_id' => auth()->id(),
@@ -26,9 +28,42 @@ class Leaders extends Component
 
     public function render()
     {   
-        $province = auth()->user()->province;
-        $this->leaders = User::where('type', 'leader')->where('province', $province)->get();
-        $this->requests = Request::where('helpseeker_id', auth()->id())->get();
+        if($this->search){
+            $search = explode(' ',$this->search);
+            
+            if(count($search) === 1){
+                $this->leaders = User::where('type', 'leader')->where( function($query) use($search){
+                    $query->where('first_name', 'LIKE', '%' . $search[0] . '%')
+                    ->orWhere('last_name', 'LIKE', '%' . $search[0] . '%')
+                    ->orWhere('username', 'LIKE', '%' . $search[0] . '%')
+                    ->orWhere('province', 'LIKE', '%' . $search[0] . '%')
+                    ->orWhere('city', 'LIKE', '%' . $search[0] . '%')
+                    ;
+                })->get();
+            }
+            elseif(count($search) >= 2){
+                // dd($search[1]);
+                $this->leaders = User::where('type', 'leader')->where( function($query) use($search){
+                    $query->where(function($q) use($search){
+                        $q->where('first_name', 'LIKE', '%' . $search[0] . '%')
+                        ->where('last_name', 'LIKE', '%' . $search[1] . '%');
+
+                    })
+                    ->orWhere(function($q) use($search){
+                        $q->where('province', 'LIKE', '%' . $search[0] . '%')
+                        ->where('city', 'LIKE', '%' . $search[1] . '%');
+                    });
+                    
+                })->get();
+            }
+            
+        }
+
+        else{
+            $province = auth()->user()->province;
+            $this->leaders = User::where('type', 'leader')->where('province', $province)->get();
+            $this->requests = Request::where('helpseeker_id', auth()->id())->get();
+        }
         return view('livewire.leaders');
     }
 }

@@ -1,4 +1,8 @@
 <div>
+    <div class="search-container" >
+        <label>جستجو:</label>
+        <input type="text" wire:model="search">
+    </div>
     <div class="warn-container">
             <span>توجه: </span>
             <p> وقتی یک راهنما درخواست شما را قبول کند دیگر نمیتوانید لیست راهنما ها را مشاهده کنید مگر ارتباط خود را با راهنمایتان قطع کنید. </p>
