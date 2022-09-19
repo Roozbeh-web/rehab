@@ -13,5 +13,6 @@ class Message extends Model
         'user_id',
         'messaged_user_id',
         'body',
+        'is_read',
     ];
 }

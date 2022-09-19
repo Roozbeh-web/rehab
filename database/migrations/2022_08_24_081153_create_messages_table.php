@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('messaged_user_id')->constrained('users');
             $table->string('body');
+            $table->boolean('is_read');
             $table->timestamps();
         });
     }
