@@ -1,11 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\EditPost;
-use App\Http\Livewire\Posts;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +38,8 @@ Route::group(['middleware'=>['auth']], function(){
 
     Route::get('/requests', [UserController::class, 'helpseekersRequest'])->name('requests');
     Route::get('/helpseekers', [UserController::class, 'helpseekers'])->name('helpseekers');
+
+    Route::get('/messages', [MessageController::class, 'getMessages'])->name('messages');
     
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
