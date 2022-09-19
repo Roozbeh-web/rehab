@@ -65,7 +65,7 @@
                         </p>
                     @endforeach
                 </div>
-                <textarea wire:model.debounce="input" wire:keydown.enter="sendMessage" class="dialog-input" placeholder="....."></textarea>
+                <textarea wire:model.debounce="input" wire:keydown.enter="sendMessage" class="dialog-input" placeholder="پیامی بنویسید..."></textarea>
             @endif
         </div>
     </div>
