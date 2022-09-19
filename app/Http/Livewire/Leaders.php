@@ -76,7 +76,8 @@ class Leaders extends Component
         else{
             $province = auth()->user()->province;
             $leaders = User::where('type', 'leader')->where('province', $province)->get();
-            $this->leaders = LeaderResource::collection($leaders)->toArray('');
+            $this->leaders = LeaderResource::collection($leaders)->toArray(auth()->id());
+            // dd($this->leaders);
             $this->requests = Request::where('helpseeker_id', auth()->id())->get();
         }
         return view('livewire.leaders');

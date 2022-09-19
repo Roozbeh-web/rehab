@@ -15,9 +15,14 @@ class Requests extends Component
         $leaderId = auth()->id();
         $helpseekerId = $id;
 
-        Request::where('leader_id', $leaderId)
-        ->where('helpseeker_id', $helpseekerId)
-        ->update(['status' => $status ]);
+        $request = Request::where('leader_id', $leaderId)
+        ->where('helpseeker_id', $helpseekerId);
+
+        if($status === 'reject'){
+            $request->delete();
+        }else{
+            $request->update(['status' => $status ]);
+        }
 
         if($status === 'accept'){
             Request::where('helpseeker_id', $helpseekerId)

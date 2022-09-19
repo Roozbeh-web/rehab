@@ -14,6 +14,7 @@ class LeaderResource extends JsonResource
      */
     public function toArray($request)
     {
+        // dd( $this->helpseekers->where('helpseeker_id', $request)->first()->toArray()['status']);
         return [
             'id' => $this->id,
             'first_name' => $this->first_name,
@@ -25,6 +26,9 @@ class LeaderResource extends JsonResource
             'bio' => $this->profile->bio,
             'province' => $this->province,
             'city' => $this->city,
+            'status' => !empty($this->helpseekers->where('helpseeker_id', $request)->first()) 
+                        ? $this->helpseekers->where('helpseeker_id', $request)->first()->status
+                        : 'null',
         ];
     }
 }
