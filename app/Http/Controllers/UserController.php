@@ -119,17 +119,23 @@ class UserController extends Controller
     }
 
     public function getLeaders(){
-        if(auth()->user()->type === 'leader'){
+        if(auth()->user()->type !== 'helpseeker'){
             return Redirect::back();
         }
         return view('leaders');
     }
 
     public function helpseekersRequest(){
+        if(auth()->user()->type !== 'leader'){
+            return Redirect::back();
+        }
         return view('requests');
     }
 
     public function helpseekers(){
+        if(auth()->user()->type !== 'leader'){
+            return Redirect::back();
+        }
         return view('helpseekers');
     }
 }
