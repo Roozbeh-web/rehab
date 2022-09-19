@@ -11,6 +11,8 @@ class Requests extends Component
 {   
     public $helpseekers;
 
+    public $reachLimit = false;
+
     public function sendRequest($id, $status){
         $leaderId = auth()->id();
         $helpseekerId = $id;
@@ -39,8 +41,13 @@ class Requests extends Component
 
     public function render()
     {   
-        $requests = auth()->user()->helpseekers->where('status', 'pending');
-        $this->helpseekers = HelpseekerResource::collection($requests)->toArray('');
+        if(auth()->user()->helpseekers->where('status', 'accept')->count() > 4){
+            $this->reachLimit = true;
+        }else{
+            $requests = auth()->user()->helpseekers->where('status', 'pending');
+            $this->helpseekers = HelpseekerResource::collection($requests)->toArray('');
+        }
+
         return view('livewire.requests');
     }
 }
