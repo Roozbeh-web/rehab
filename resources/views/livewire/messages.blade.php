@@ -6,7 +6,7 @@
                     @php
                         $chatUser = $chatUsers;
                         $isOne = true;
-                    @endphp
+                        @endphp
                 @endif
                 @if ($userId == $chatUser['id'])
                     @php
@@ -18,18 +18,26 @@
                     @endphp
                 @endif
                 <div wire:click="chooseChat({{$chatUser['id']}})" style="background-color: {{$color}}" class="people-card">
-                    <img src="storage/{{$chatUser['avatar']}}" alt="leader-img">
+                    <div>
+                        <img src="storage/{{$chatUser['avatar']}}" alt="leader-img">
+                    </div>
                     <div>
                         <h1>{{$chatUser['username']}}</h1>
                         <p>{{$chatUser['first_name']}} {{$chatUser['last_name']}}</p>
                     </div>
+                    @if (auth()->user()->unreadMessages($chatUser['id'])->count() !== 0)
+                        <div>
+                            <p> <span>( {{auth()->user()->unreadMessages($chatUser['id'])->count()}} ) </span> پیام نخوانده</p>
+                        </div>
+                        
+                    @endif
                 </div>
                 @if (isset($isOne))
                     @break
                 @endif
             @endforeach
         </div>
-        <div class="dialog-box-container">
+        <div class="dialog-box-container" id="scroll_div">
             @if (!$userId)
                 <h1 style="text-align: center">برای شروع چت یک کاربر انتخاب کنید</h1>
             @else
@@ -44,7 +52,7 @@
                             @php
                                 $dir = 'flex-end';
                                 $backColor = '#04AA6D';
-                            @endphp
+                                @endphp
                         @endif
                         <p style="align-self: {{$dir}}; background-color: {{$backColor}}" class="dialog-txt">{{$message['body']}}</p>
                     @endforeach

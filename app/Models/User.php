@@ -80,4 +80,13 @@ class User extends Authenticatable
     public function reciveMessages($id){
         return $this->hasMany(Message::class, 'messaged_user_id', 'id')->where('user_id', $id);
     }
+
+    public function unreadMessages($senderId = null){
+        $unreads = $this->hasMany(Message::class, 'messaged_user_id', 'id')->where('is_read', false);
+        if($senderId){
+            $unreads = $unreads->where('user_id', $senderId);
+        }
+
+        return $unreads;
+    }
 }

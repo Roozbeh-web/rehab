@@ -25,7 +25,7 @@
             <a href={{ route('requests') }} class="nav-link-item">درخواست ها</a>
             <a href={{ route('helpseekers') }} class="nav-link-item">مددجویان</a>
         @endif
-        <a href={{ route('messages') }} class="nav-link-item">پیام ها</a>
+        <a href={{ route('messages') }} class="nav-link-item">پیام ها({{auth()->user()->unreadMessages->count()}})</a>
         <a href={{ route('logout') }} class="nav-link-item">خروج</a>
     </div>
 </div>

@@ -21,6 +21,7 @@ class Messages extends Component
     ];
 
     public function chooseChat($id){
+        Message::where('messaged_user_id', auth()->id())->where('user_id', $id)->update(['is_read'=>true]);
         $this->userId = $id;
     }
 
@@ -29,6 +30,7 @@ class Messages extends Component
             'body' => $this->input,
             'user_id' => auth()->id(),
             'messaged_user_id' => $this->userId,
+            'is_read' => false,
         ]);
         $this->input = null;
     }
@@ -48,7 +50,6 @@ class Messages extends Component
             $sentMessages = auth()->user()->sentMessages($this->userId);
             $reciveMessages = auth()->user()->reciveMessages($this->userId);
             $this->messages = $sentMessages->union($reciveMessages)->get()->toArray();
-            
         }
 
         return view('livewire.messages');

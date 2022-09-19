@@ -541,7 +541,7 @@ hr {
   resize: none;
   position: sticky;
   height: 100px;
-  width: 678px;
+  width: 660px;
   top: calc( 100vh - 100px );
 }
 
@@ -559,9 +559,15 @@ hr {
   background-color: #04AA6D;
   margin: 10px;
   border-radius: 13px;
+  justify-content: space-around;
   img{
     max-width: 70px;
     border-radius: 80%;
+    margin-top: 30px;
+  }
+
+  p:first-child{
+    margin-top: 26px;
   }
 }
 
