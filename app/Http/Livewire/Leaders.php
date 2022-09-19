@@ -36,7 +36,6 @@ class Leaders extends Component
         if(Request::where('helpseeker_id', auth()->id())->where('status', 'accept')->first()){
             $leader = Request::where('helpseeker_id', auth()->id())->where('status', 'accept')->first()->leader;
             $this->leader = (new SpecificLeaderResource($leader))->toArray('');
-            // dd($this->leaders);
         }
 
         if($this->search){
