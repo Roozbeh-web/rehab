@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Resources\HelpseekerResource;
 use App\Models\Request;
 use App\Models\User;
 use Livewire\Component;
 
 class Requests extends Component
 {   
-    public $requests;
+    public $helpseekers;
 
     public function sendRequest($id, $status){
         $leaderId = auth()->id();
@@ -27,12 +28,14 @@ class Requests extends Component
             ->delete();
         }
 
-        $this->requests = auth()->user()->helpseekers->where('status', 'pending');
+        $requests = auth()->user()->helpseekers->where('status', 'pending');
+        $this->helpseekers = HelpseekerResource::collection($requests)->toArray('');
     }
 
     public function render()
     {   
-        $this->requests = auth()->user()->helpseekers->where('status', 'pending');
+        $requests = auth()->user()->helpseekers->where('status', 'pending');
+        $this->helpseekers = HelpseekerResource::collection($requests)->toArray('');
         return view('livewire.requests');
     }
 }
