@@ -15,7 +15,7 @@
                 <a href="#" class="footer-link-item">برنامه</a>
             @else
                 <a href={{ route('requests') }} class="footer-link-item">درخواست</a>
-                <a href="#" class="footer-link-item">مددجویان</a>
+                <a href={{ route('helpseekers') }} class="footer-link-item">مددجویان</a>
             @endif
         </div>
     </div>

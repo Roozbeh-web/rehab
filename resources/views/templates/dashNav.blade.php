@@ -23,7 +23,7 @@
             <a href="#" class="nav-link-item">برنامه</a>
         @else
             <a href={{ route('requests') }} class="nav-link-item">درخواست ها</a>
-            <a href="#" class="nav-link-item">مددجویان</a>
+            <a href={{ route('helpseekers') }} class="nav-link-item">مددجویان</a>
         @endif
         <a href="#" class="nav-link-item">پیام ها</a>
         <a href={{ route('logout') }} class="nav-link-item">خروج</a>
