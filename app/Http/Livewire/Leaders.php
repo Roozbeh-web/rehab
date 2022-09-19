@@ -29,6 +29,9 @@ class Leaders extends Component
 
     public function cancelRequest($leaderId){
         Request::where('leader_id', $leaderId)->where('helpseeker_id', auth()->id())->delete();
+        if($this->leader){
+            $this->leader = null;
+        }
     }
 
     public function render()
