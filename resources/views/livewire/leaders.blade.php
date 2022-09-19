@@ -50,7 +50,7 @@
                             <p>شهر: {{$leader['city']}}</p>
                         </div>
                         <div >
-                            <button wire:click="cancelRequest({{$leader['id']}})" class="btn leader-request-btn">ارسال پیام</button>
+                            <button wire:click="sendMessage({{$leader['id']}})" class="btn leader-request-btn">ارسال پیام</button>
                             <button wire:click="cancelRequest({{$leader['id']}})" class="btn leader-cancel-btn">حذف راهنما</button>
                         </div>
                     </div>

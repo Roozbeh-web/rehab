@@ -45,7 +45,7 @@
                             <p>شهر: {{$helpseeker['city']}}</p>
                         </div>
                         <div >
-                            <button class="btn leader-request-btn">ارسال پیام</button>
+                            <button wire:click="sendMessage({{$helpseeker['id']}})" class="btn leader-request-btn">ارسال پیام</button>
                             <button wire:click="sendRequest({{$helpseeker['id']}}, 'cancel')" class="btn leader-cancel-btn">حذف مددجو</button>
                         </div>
                         <div>

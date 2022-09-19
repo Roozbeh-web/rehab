@@ -10,6 +10,10 @@ class Helpseekers extends Component
 {
     public $helpseekers;
 
+    public function sendMessage($id){
+        return redirect()->route('messages',['id'=>$id]);
+    }
+
     public function sendRequest($helpseekerId, $status){
         $request = Request::where('helpseeker_id', $helpseekerId)->where('leader_id', auth()->id());
         

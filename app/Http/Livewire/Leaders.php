@@ -27,6 +27,10 @@ class Leaders extends Component
         ]);
     }
 
+    public function sendMessage($id){
+        return redirect()->route('messages',['id'=>$id]);
+    }
+
     public function cancelRequest($leaderId){
         Request::where('leader_id', $leaderId)->where('helpseeker_id', auth()->id())->delete();
         if($this->leader){
