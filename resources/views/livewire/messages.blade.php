@@ -54,7 +54,15 @@
                                 $backColor = '#04AA6D';
                                 @endphp
                         @endif
-                        <p style="align-self: {{$dir}}; background-color: {{$backColor}}" class="dialog-txt">{{$message['body']}}</p>
+                        @php
+                            $date = new DateTime($message['created_at']);
+                            $timezone = new DateTimeZone('(+4:30)');
+                            $date = $date->setTimezone($timezone);
+                            $date = $date->format('Y-m-d H:i:s');
+                        @endphp
+                        <p style="align-self: {{$dir}}; background-color: {{$backColor}}" class="dialog-txt">{{$message['body']}}<br>
+                            <span>{{$date}}</span>
+                        </p>
                     @endforeach
                 </div>
                 <textarea wire:model.debounce="input" wire:keydown.enter="sendMessage" class="dialog-input" placeholder="پیامی بنویسید"></textarea>
