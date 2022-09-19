@@ -1,4 +1,9 @@
 <div>
+    @if (empty($helpseekers))
+        <div class="notice-container">
+            <h1>مددجو وجود ندارد</h1>
+        </div>
+    @endif
     @foreach ($helpseekers as $helpseeker)
         <div class="leader-container">
             <div class="leader-card-container ">
@@ -40,8 +45,11 @@
                             <p>شهر: {{$helpseeker['city']}}</p>
                         </div>
                         <div >
-                            <button wire:click="cancelRequest({{$helpseeker['id']}})" class="btn leader-request-btn">ارسال پیام</button>
-                            <button wire:click="cancelRequest({{$helpseeker['id']}})" class="btn leader-cancel-btn">حذف مددجو</button>
+                            <button class="btn leader-request-btn">ارسال پیام</button>
+                            <button wire:click="sendRequest({{$helpseeker['id']}}, 'cancel')" class="btn leader-cancel-btn">حذف مددجو</button>
+                        </div>
+                        <div>
+                            <a wire:click="sendRequest({{ $helpseeker['id']}}, 'block')" class="block-linkbtn">بلاک</a>
                         </div>
                     </div>
                 </div>
