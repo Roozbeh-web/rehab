@@ -72,4 +72,12 @@ class User extends Authenticatable
     public function drugs(){
         return $this->hasMany(UserDrug::class, 'user_id', 'id');
     }
+
+    public function sentMessages($id){
+        return $this->hasMany(Message::class, 'user_id', 'id')->where('messaged_user_id', $id);
+    }
+
+    public function reciveMessages($id){
+        return $this->hasMany(Message::class, 'messaged_user_id', 'id')->where('user_id', $id);
+    }
 }

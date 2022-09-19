@@ -516,3 +516,71 @@ hr {
   padding: 0 !important;
   margin: 0 !important;
 }
+
+.messages-container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.dialog-box-container{
+  width: 680px;
+  height: 440px;
+  overflow-y: auto;
+  background-color: rgba(66, 252, 174, 0.267);
+  margin-top: 10px;
+  border-radius: 12px;
+}
+
+.dialog-input{
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid rgb(19, 19, 19);
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+  position: sticky;
+  height: 100px;
+  width: 678px;
+  top: calc( 100vh - 100px );
+}
+
+.people-container{
+  width: 380px;
+  height: 440px;
+  // border: 1px solid red;
+  overflow-y: auto;
+  margin-left: 20px;
+}
+
+.people-card{
+  display: flex;
+  padding: 10px 20px;
+  background-color: #04AA6D;
+  margin: 10px;
+  border-radius: 13px;
+  img{
+    max-width: 70px;
+    border-radius: 80%;
+  }
+}
+
+.people-card:hover{
+  cursor: pointer;
+  background-color: #0dec9a;
+}
+
+.dialog-txt-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-txt{
+  background-color: #0dec9a;
+  max-width: 300px;
+  align-self: flex-end;
+  padding: 10px 10px;
+  margin: 10px;
+  border-radius: 18px;
+}
+
