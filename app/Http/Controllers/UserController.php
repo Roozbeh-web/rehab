@@ -128,4 +128,8 @@ class UserController extends Controller
     public function helpseekersRequest(){
         return view('requests');
     }
+
+    public function helpseekers(){
+        return view('helpseekers');
+    }
 }

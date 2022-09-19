@@ -39,6 +39,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('/leaders', [UserController::class , 'getLeaders'])->name('leaders');
 
     Route::get('/requests', [UserController::class, 'helpseekersRequest'])->name('requests');
+    Route::get('/helpseekers', [UserController::class, 'helpseekers'])->name('helpseekers');
     
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
