@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Resources\SpecificHelpseekerResource;
 use Livewire\Component;
 
 class Helpseekers extends Component
@@ -11,6 +12,7 @@ class Helpseekers extends Component
     public function render()
     {
         $helpseekers = auth()->user()->helpseekers->where('status', 'accept');
+        $this->helpseekers = SpecificHelpseekerResource::collection($helpseekers)->toArray('');
 
         return view('livewire.helpseekers');
     }
