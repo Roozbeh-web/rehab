@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Http\Resources\LeaderResource;
+use App\Http\Resources\SpecificLeaderResource;
 use App\Models\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
@@ -13,6 +14,8 @@ class Leaders extends Component
     public $leaders;
     public $leaderId;
     public $requests;
+
+    public $leader;
 
     public $search;
 
@@ -32,7 +35,8 @@ class Leaders extends Component
     {   
         if(Request::where('helpseeker_id', auth()->id())->where('status', 'accept')->first()){
             $leader = Request::where('helpseeker_id', auth()->id())->where('status', 'accept')->first()->leader;
-            $this->leaders = $leader;
+            $this->leader = (new SpecificLeaderResource($leader))->toArray('');
+            // dd($this->leaders);
         }
 
         if($this->search){

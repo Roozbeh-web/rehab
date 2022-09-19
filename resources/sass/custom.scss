@@ -431,8 +431,9 @@ hr {
 .leader-bio-container{
   background-color: $secondary-color;
   color: $dark-color;
-  padding: 20px 40px;
+  padding: 20px 5px 20px 40px;
   border-radius: 18px;
+  margin-top: 10px;
 }
 
 .leader-img-container img{
@@ -509,4 +510,9 @@ hr {
   text-decoration: underline;
   font-style: italic;
   cursor: pointer;
+}
+
+.specific-leader{
+  padding: 0 !important;
+  margin: 0 !important;
 }
