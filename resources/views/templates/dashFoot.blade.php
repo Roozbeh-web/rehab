@@ -14,7 +14,7 @@
                 <a href={{ route('leaders') }} class="footer-link-item">راهنما</a>
                 <a href="#" class="footer-link-item">برنامه</a>
             @else
-                <a href="#" class="footer-link-item">درخواست</a>
+                <a href={{ route('requests') }} class="footer-link-item">درخواست</a>
                 <a href="#" class="footer-link-item">مددجویان</a>
             @endif
         </div>

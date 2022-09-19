@@ -22,7 +22,7 @@
             <a href={{ route('leaders') }} class="nav-link-item">راهنما</a>
             <a href="#" class="nav-link-item">برنامه</a>
         @else
-            <a href="#" class="nav-link-item">درخواست ها</a>
+            <a href={{ route('requests') }} class="nav-link-item">درخواست ها</a>
             <a href="#" class="nav-link-item">مددجویان</a>
         @endif
         <a href="#" class="nav-link-item">پیام ها</a>
