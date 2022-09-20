@@ -41,7 +41,9 @@ class Leaders extends Component
         $messages = $sentMessages->union($recivedMessages);
 
         if($messages->exists()){
-            $messages->delete();
+            $messages->get()->each(function ($product, $key) {
+                $product->delete();
+            });
         }
         
         Request::where('leader_id', $leaderId)->where('helpseeker_id', $id)->delete();
