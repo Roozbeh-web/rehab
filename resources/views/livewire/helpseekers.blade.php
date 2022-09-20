@@ -56,6 +56,9 @@
                                 <p>{{$helpseeker['bio']}}</p>
                             </div>    
                         @endif
+                        <div>
+                            <button wire:click="sendMessage({{$helpseeker['id']}})" class="btn leader-request-btn plan-btn">برنامه ها</button>
+                        </div>
                     </div>
                 </div>
             </div>

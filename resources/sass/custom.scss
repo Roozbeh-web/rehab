@@ -443,9 +443,9 @@ hr {
 }
 
 .leader-request-btn{
-  background-color: #04AA6D;
+  background-color: #02744a;
   margin-top: 20px;
-  color: black;
+  color: rgb(255, 255, 255);
   padding: 2px 20px 12px 20px;
 }
 
@@ -590,3 +590,11 @@ hr {
   border-radius: 18px;
 }
 
+.plan-btn{
+  background-color: rgb(63, 143, 248) !important;
+  color: white;
+}
+
+.plan-btn:hover{
+  background-color: white !important;
+}
