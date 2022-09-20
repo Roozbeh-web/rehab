@@ -12,7 +12,7 @@
         </div>
         <div class="leader-plans-contaner">
             <div class="new-plan-btn-container">
-                <button class="btn leader-request-btn">افزودن برنامه</button>
+                <button wire:click="newPlan({{$user['id']}})" class="btn leader-request-btn">افزودن برنامه</button>
             </div>
             <div class="plan-card">
                 <div class="plan-card-inner">

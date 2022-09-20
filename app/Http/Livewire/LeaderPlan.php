@@ -11,10 +11,14 @@ class LeaderPlan extends Component
     public $userId;
 
     public $user;
-
+    
     protected $queryString = [
         'userId' => ['as' => 'id', 'expect' => 1]
     ];
+
+    public function newPlan($id){
+        return redirect()->route('newPlan',['id'=>$id]);
+    }
 
     public function render()
     {   
