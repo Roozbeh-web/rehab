@@ -16,24 +16,26 @@ class Helpseekers extends Component
     }
 
     public function sendRequest($helpseekerId, $status){
-        $request = Request::where('helpseeker_id', $helpseekerId)->where('leader_id', auth()->id());
+        $id = auth()->id();
+
+        $messages = null;
         
-        if($status === 'cancel'){
-            $id = auth()->id();
-
-            $sentMessages = Message::where('messaged_user_id', $id)->where('user_id', $helpseekerId);
-            $recivedMessages = Message::where('user_id', $id)->where('messaged_user_id', $helpseekerId);
-            
+        $request = Request::where('helpseeker_id', $helpseekerId)->where('leader_id', $id);
+        
+        $sentMessages = Message::where('messaged_user_id', $id)->where('user_id', $helpseekerId);
+        $recivedMessages = Message::where('user_id', $id)->where('messaged_user_id', $helpseekerId);
+        
+        if($sentMessages->union($recivedMessages)->exists()){
             $messages = $sentMessages->union($recivedMessages);
+        };
 
-            if($messages->exists()){
-                $messages->delete();
-            }
-
+        if($status === 'cancel'){
+            $messages->delete();
             $request->delete();
         }
-        
+
         else{
+            $messages->delete();
             $request->update(['status'=>'block']);
         }
     }
