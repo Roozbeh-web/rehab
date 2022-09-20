@@ -30,14 +30,16 @@ class Helpseekers extends Component
         };
 
         if($status === 'cancel'){
-            $messages->delete();
             $request->delete();
         }
 
         else{
-            $messages->delete();
             $request->update(['status'=>'block']);
         }
+
+        $messages->get()->each(function ($product, $key) {
+            $product->delete();
+        });
     }
 
     public function render()
