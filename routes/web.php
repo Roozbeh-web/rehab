@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,8 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('/helpseekers', [UserController::class, 'helpseekers'])->name('helpseekers');
 
     Route::get('/messages', [MessageController::class, 'getMessages'])->name('messages');
+
+    Route::get('/leader-plans', [PlansController::class, 'leadersPlan'])->name('leaderPlans');
     
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
