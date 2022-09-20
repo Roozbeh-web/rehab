@@ -17,9 +17,11 @@
                             <div class="leader-img-container">
                                 <img src="storage/{{$helpseeker['avatar']}}" alt="leader-img">
                             </div>
-                            <div class="leader-bio-container">
-                                <p>{{$helpseeker['bio']}}</p>
-                            </div>   
+                            @if ($helpseeker['bio'])
+                                <div class="leader-bio-container">
+                                    <p>{{$helpseeker['bio']}}</p>
+                                </div>    
+                            @endif  
                         </div>
                     </div>
                     <div class="leader-card-col">
@@ -39,6 +41,7 @@
                                     @foreach($helpseeker['drugs'] as $drug)
                                         {{$drug['name']}}.
                                     @endforeach
+                                </span>
                                     <div class="btn-container">
                                         <div>
                                             <button wire:click="sendRequest({{ $helpseeker['id']}}, 'accept')" class="btn helpseeker-request-btn">قبول درخواست</button>
@@ -50,7 +53,6 @@
                                     <div>
                                         <a wire:click="sendRequest({{ $helpseeker['id']}}, 'block')" class="block-linkbtn">بلاک</a>
                                     </div>
-                                </span>
                             </div>
                         </div>
                     </div>

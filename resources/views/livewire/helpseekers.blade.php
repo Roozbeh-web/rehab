@@ -16,11 +16,18 @@
                             <p>شماره همراه: {{$helpseeker['phone']}}</p>
                             <p>ایمیل: {{$helpseeker['email']}}</p>
                         </div>
-                        @if ($helpseeker['bio'])
-                            <div class="leader-bio-container">
-                                <p>{{$helpseeker['bio']}}</p>
-                            </div>            
-                        @endif
+                        <span>مواد مورد مصرف:
+                            @foreach($helpseeker['drugs'] as $drug)
+                                {{$drug['name']}}.
+                            @endforeach
+                        </span>        
+                        <div>
+                            <button wire:click="sendMessage({{$helpseeker['id']}})" class="btn leader-request-btn">ارسال پیام</button>
+                            <button wire:click="sendRequest({{$helpseeker['id']}}, 'cancel')" class="btn leader-cancel-btn">حذف مددجو</button>
+                            <div>
+                                <a wire:click="sendRequest({{ $helpseeker['id']}}, 'block')" class="block-linkbtn">بلاک</a>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 <div class="leader-card-col">
@@ -44,13 +51,11 @@
                             <p>استان: {{$helpseeker['province']}}</p>
                             <p>شهر: {{$helpseeker['city']}}</p>
                         </div>
-                        <div >
-                            <button wire:click="sendMessage({{$helpseeker['id']}})" class="btn leader-request-btn">ارسال پیام</button>
-                            <button wire:click="sendRequest({{$helpseeker['id']}}, 'cancel')" class="btn leader-cancel-btn">حذف مددجو</button>
-                        </div>
-                        <div>
-                            <a wire:click="sendRequest({{ $helpseeker['id']}}, 'block')" class="block-linkbtn">بلاک</a>
-                        </div>
+                        @if ($helpseeker['bio'])
+                            <div class="leader-bio-container">
+                                <p>{{$helpseeker['bio']}}</p>
+                            </div>    
+                        @endif
                     </div>
                 </div>
             </div>
