@@ -42,6 +42,7 @@ Route::group(['middleware'=>['auth']], function(){
 
     Route::get('/messages', [MessageController::class, 'getMessages'])->name('messages');
 
+    Route::get('new-plan', [PlansController::class, 'newPlan'])->name('newPlan');
     Route::get('/leader-plans', [PlansController::class, 'leadersPlan'])->name('leaderPlans');
     
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
