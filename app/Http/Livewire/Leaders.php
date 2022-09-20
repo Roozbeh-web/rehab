@@ -44,7 +44,8 @@ class Leaders extends Component
             $messages->delete();
         }
         
-        Request::where('leader_id', $leaderId)->where('helpseeker_id', auth()->id())->delete();
+        Request::where('leader_id', $leaderId)->where('helpseeker_id', $id)->delete();
+
         if($this->leader){
             $this->leader = null;
         }
