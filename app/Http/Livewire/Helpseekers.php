@@ -12,7 +12,7 @@ class Helpseekers extends Component
     public $helpseekers;
 
     public function plans($id){
-        return redirect()->route('plans',['id'=>$id]);
+        return redirect()->route('leaderPlans',['id'=>$id]);
     }
 
     public function sendMessage($id){
