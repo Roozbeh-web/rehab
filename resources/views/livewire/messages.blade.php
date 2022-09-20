@@ -1,4 +1,10 @@
 <div>
+    @if (!$chatUsers)
+        <div class="notice-container">
+            <h1>شخصی برای ارسال پیام وجود ندارد</h1>
+        </div>
+    @else
+        
     <div class="messages-container">
         <div class="people-container">
             @foreach ($chatUsers as $chatUser)
@@ -11,9 +17,9 @@
                 @if ($userId == $chatUser['id'])
                     @php
                         $color = 'plum';
-                    @endphp
+                        @endphp
                 @else
-                    @php
+                @php
                         $color = null;
                     @endphp
                 @endif
@@ -26,7 +32,7 @@
                         <p>{{$chatUser['first_name']}} {{$chatUser['last_name']}}</p>
                     </div>
                     @if (auth()->user()->unreadMessages($chatUser['id'])->count() !== 0)
-                        <div>
+                    <div>
                             <p> <span>( {{auth()->user()->unreadMessages($chatUser['id'])->count()}} ) </span> پیام نخوانده</p>
                         </div>
                         
@@ -34,22 +40,22 @@
                 </div>
                 @if (isset($isOne))
                     @break
-                @endif
+                    @endif
             @endforeach
         </div>
         <div class="dialog-box-container" id="scroll_div">
             @if (!$userId)
-                <h1 style="text-align: center">برای شروع چت یک کاربر انتخاب کنید</h1>
+            <h1 style="text-align: center">برای شروع چت یک کاربر انتخاب کنید</h1>
             @else
-                <div class="dialog-txt-container">
-                    @foreach ($messages as $message)
-                        @if($message['user_id'] === auth()->id())
-                            @php
+            <div class="dialog-txt-container">
+                @foreach ($messages as $message)
+                @if($message['user_id'] === auth()->id())
+                @php
                                 $dir = 'flex-start';
                                 $backColor = '#0dec9a';
-                            @endphp
+                                @endphp
                         @else
-                            @php
+                        @php
                                 $dir = 'flex-end';
                                 $backColor = '#04AA6D';
                                 @endphp
@@ -59,7 +65,7 @@
                             $timezone = new DateTimeZone('(+4:30)');
                             $date = $date->setTimezone($timezone);
                             $date = $date->format('Y-m-d H:i:s');
-                        @endphp
+                            @endphp
                         <p style="align-self: {{$dir}}; background-color: {{$backColor}}" class="dialog-txt">{{$message['body']}}<br>
                             <span>{{$date}}</span>
                         </p>
@@ -69,4 +75,5 @@
             @endif
         </div>
     </div>
+    @endif
 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Http\Resources\LeaderResource;
 use App\Http\Resources\SpecificLeaderResource;
+use App\Models\Message;
 use App\Models\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
@@ -32,10 +33,22 @@ class Leaders extends Component
     }
 
     public function cancelRequest($leaderId){
+        $id = auth()->id();
+
+        $sentMessages = Message::where('messaged_user_id', $id)->where('user_id', $leaderId);
+        $recivedMessages = Message::where('user_id', $id)->where('messaged_user_id', $leaderId);
+
+        $messages = $sentMessages->union($recivedMessages);
+
+        if($messages->exists()){
+            $messages->delete();
+        }
+        
         Request::where('leader_id', $leaderId)->where('helpseeker_id', auth()->id())->delete();
         if($this->leader){
             $this->leader = null;
         }
+        
     }
 
     public function render()

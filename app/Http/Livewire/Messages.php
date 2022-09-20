@@ -38,8 +38,11 @@ class Messages extends Component
     public function render()
     {  
         if(auth()->user()->type === 'helpseeker'){
-            $leader = auth()->user()->leaders->where('status', 'accept')->first()->leader;
-            $this->chatUsers = (new SpecificLeaderResource($leader))->toArray('');
+            $leader = auth()->user()->leaders->where('status', 'accept')->first();
+            if($leader){
+                $leader = auth()->user()->leaders->where('status', 'accept')->first()->leader;
+                $this->chatUsers = (new SpecificLeaderResource($leader))->toArray('');
+            }
         }
         elseif(auth()->user()->type === 'leader'){
             $requests = auth()->user()->helpseekers->where('status', 'accept');
