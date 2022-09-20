@@ -27,6 +27,7 @@ class SpecificLeaderResource extends JsonResource
             'city' => $this->city,
             'email' => $this->email,
             'phone' => $this->phone,
+            'drugs' =>$this->drugs->pluck('name')->toArray(),
         ];
     }
 }

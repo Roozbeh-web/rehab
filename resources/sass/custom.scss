@@ -598,3 +598,101 @@ hr {
 .plan-btn:hover{
   background-color: white !important;
 }
+
+.plans-user-details-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plans-user-details-second-container{
+  display: flex;
+  align-items: center;
+}
+
+.leader-plans-contaner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 230px;
+}
+
+.plan-card{
+  background-color: #fad5fd63;
+  width: 700px;
+  margin: 14px;
+  border-radius: 18px;
+  color: $dark-color;
+}
+
+.plan-card-inner{
+  display:flex;
+  justify-content: space-between;
+  padding: 15px 50px;
+  padding-bottom: 0;
+}
+
+.body-container{
+  justify-self: center;
+  width: 260px;
+  margin-top: 30px;
+  p:first-child{
+    padding: 4px 13px;
+    background-color: white;
+    border-radius: 18px;
+    height: 230px;
+    overflow-y: auto;
+  }
+  p:last-child{
+    direction: ltr;
+  }
+}
+
+.plan-progress-container{
+  padding: 10px 0;
+}
+
+.del-btn-container{
+  padding: 10px 0;
+}
+
+.comments-btn-container{
+  align-items: center;
+  text-align: center;
+  background-color: #0dec9a;
+  cursor: pointer;
+  border-radius: 18px;
+}
+
+.comments-container{
+  display: flex;
+  flex-direction: column;
+  margin: 10px 60px;
+  background-color: #dbffff56;
+  padding: 10px 25px;
+  border-radius: 18px;
+}
+
+.comment-txt-container{
+  background-color: #4e917948;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 7px 20px;
+  padding-bottom: 14px;
+  border-radius: 9px;
+}
+
+.comment-input-container{
+  display: flex;
+}
+
+.comment-input{
+  width: 530px;
+  height: 90px;
+  overflow-y: auto;
+}
+
+.share-icon{
+  margin-top: 17px;
+  margin-right: 10px;
+}
