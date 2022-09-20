@@ -23,7 +23,7 @@
                         </span>        
                         <div>
                             <button wire:click="sendMessage({{$helpseeker['id']}})" class="btn leader-request-btn">ارسال پیام</button><br>
-                            <button class="btn leader-request-btn plan-btn">برنامه ها</button>
+                            <button wire:click="plans({{$helpseeker['id']}})" class="btn leader-request-btn plan-btn">برنامه ها</button>
                         </div>
                         </div>
                     </div>

@@ -11,6 +11,10 @@ class Helpseekers extends Component
 {
     public $helpseekers;
 
+    public function plans($id){
+        return redirect()->route('plans',['id'=>$id]);
+    }
+
     public function sendMessage($id){
         return redirect()->route('messages',['id'=>$id]);
     }
