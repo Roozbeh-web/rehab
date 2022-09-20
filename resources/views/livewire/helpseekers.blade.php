@@ -22,11 +22,8 @@
                             @endforeach
                         </span>        
                         <div>
-                            <button wire:click="sendMessage({{$helpseeker['id']}})" class="btn leader-request-btn">ارسال پیام</button>
-                            <button wire:click="sendRequest({{$helpseeker['id']}}, 'cancel')" class="btn leader-cancel-btn">حذف مددجو</button>
-                            <div>
-                                <a wire:click="sendRequest({{ $helpseeker['id']}}, 'block')" class="block-linkbtn">بلاک</a>
-                            </div>
+                            <button wire:click="sendMessage({{$helpseeker['id']}})" class="btn leader-request-btn">ارسال پیام</button><br>
+                            <button class="btn leader-request-btn plan-btn">برنامه ها</button>
                         </div>
                         </div>
                     </div>
@@ -57,7 +54,10 @@
                             </div>    
                         @endif
                         <div>
-                            <button wire:click="sendMessage({{$helpseeker['id']}})" class="btn leader-request-btn plan-btn">برنامه ها</button>
+                            <button wire:click="sendRequest({{$helpseeker['id']}}, 'cancel')" class="btn leader-cancel-btn">حذف مددجو</button>
+                            <div>
+                                <a wire:click="sendRequest({{ $helpseeker['id']}}, 'block')" class="block-linkbtn">بلاک</a>
+                            </div>
                         </div>
                     </div>
                 </div>
