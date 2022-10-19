@@ -11,6 +11,10 @@
     4. [Pull the project](#pull-the-project)
     5. [Install php dependencies](#install-php-dependencies)
     6. [Add node modules](#add-node-modules)
+    7. [Create database file](#create-database-file)
+    8. [Migrate the database](#migrate-the-database)
+    9. [Seeding tables](#seeding-tables)
+- [Project status](#project-status)
 
 # General Info
   The goal of this project is to ease quitting addiction. Helpseekers and leaders can create an account. Helpseekers can choose a leader and comiunicate     with their leaders. Leaders can set plans for their helpseekers.
@@ -47,6 +51,19 @@ The following setup is for linux debian base OS.
 - ## Add node modules
    Run this command in the root folder of project:<br></br>
    `npm install`
+- ## Create database file
+   Go to database folder from root folder in terminal:<br></br>
+   `cd database`
+   <br></br>
+   Then create database.sqlite file:<br></br>
+   `touch database.sqlite`
+- ## Migrate the database
+   In the root folder of project enter this artisan code:<br></br>
+   `php artisan migrate`
+- ## Seeding tables
+   `php artisan db:seed`
+# Project Status
+   In progress
    
     
     
